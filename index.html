@@ -5,42 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mugtaba Shaikeldin | Cyber Security Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Font Loading for smoothness -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Base Styles for Futuristic Theme */
+        /* Base Styles for Professional Dark Theme */
         body { 
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
             font-size: 16px; 
-            background-color: #0D1117; /* Deep Space Black */
+            /* Subtle gradient for a premium, non-flat background */
+            background-color: #0D1117;
+            background-image: radial-gradient(ellipse at top, #1a202c 0%, #0D1117 70%);
         }
+        
         /* Electric Cyan Accent Color */
         .text-accent { color: #00FFFF; } 
-        .bg-card { background-color: rgba(22, 27, 34, 0.6); backdrop-filter: blur(5px); } /* Dark Translucent Card */
 
-        /* Custom Card Hover/Glow Effect */
+        /* Polished Card: Translucent with a subtle border */
+        .bg-card { 
+            background-color: rgba(22, 27, 34, 0.6); 
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(100, 116, 139, 0.3); /* Faint border */
+        }
+
+        /* Softer, more professional glow effect */
         .card-glow {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card-glow:hover {
             transform: translateY(-4px);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
         }
         
-        /* Fixes the size and aspect ratio of the TryHackMe badge iframe */
+        /* FINAL BADGE FIX: Increased height for full visibility */
         .thm-badge-iframe {
             display: block;
             width: 100%;
-            height: 60px; /* Adjusted height for perfect fit */
-            min-height: 60px;
+            height: 120px; /* Increased height */
+            min-height: 120px; /* Ensures it has space */
         }
     </style>
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="text-gray-100 text-base">
+<body class="text-gray-100 text-base min-h-screen">
 
-    <header class="py-16 border-b border-gray-700 shadow-xl bg-gray-800/20">
+    <!-- Header & Hero Section -->
+    <header class="py-16 border-b border-gray-700/50 shadow-xl">
         <div class="container mx-auto px-8 text-center">
             <h1 class="text-6xl sm:text-7xl font-extrabold text-white leading-tight tracking-tight">
                 Mugtaba Shaikeldin
@@ -56,6 +68,7 @@
 
     <main class="container mx-auto px-8 py-16">
 
+        <!-- About Me / Profiles Section -->
         <section id="about" class="mb-16 p-8 bg-card rounded-xl shadow-2xl border-l-4 border-accent">
             <h2 class="text-3xl font-bold text-accent mb-6 border-b border-gray-700 pb-3">About Me</h2>
 
@@ -68,6 +81,7 @@
                 <div class="mt-8 md:mt-0 md:col-span-1 space-y-4">
                     <h3 class="text-xl font-semibold text-white border-b border-gray-600 pb-1">Live Learning Profiles</h3>
                     
+                    <!-- HTB Profile Link -->
                     <a href="https://app.hackthebox.com/profile/2433757" target="_blank" class="card-glow flex items-center space-x-3 p-3 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition duration-300">
                         <i class="fa-solid fa-square-person-walking text-xl text-accent"></i>
                         <div>
@@ -76,6 +90,7 @@
                         </div>
                     </a>
                     
+                    <!-- THM Badge Container -->
                     <div class="card-glow bg-gray-700/50 rounded-lg p-3 space-y-2">
                         <div class="flex items-center space-x-3">
                             <i class="fa-solid fa-bug-slash text-xl text-accent"></i>
@@ -105,6 +120,7 @@
             </div>
         </section>
 
+        <!-- Experience Section -->
         <section id="experience" class="mb-16">
             <h2 class="text-3xl font-bold text-accent mb-8 border-b border-gray-700 pb-3">Experience</h2>
 
@@ -132,10 +148,12 @@
             </div>
         </section>
 
+        <!-- Certifications Section -->
         <section id="certifications" class="mb-16">
             <h2 class="text-3xl font-bold text-accent mb-8 border-b border-gray-700 pb-3">Certifications & Training</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- eJPTv2 -->
                 <div class="p-6 bg-card rounded-lg shadow-lg border-l-4 border-yellow-500 transition duration-300 hover:scale-[1.03] card-glow">
                     <h3 class="text-xl font-semibold text-white">eJPTv2</h3>
                     <p class="text-sm text-gray-400">INE (eLearnSecurity)</p>
@@ -143,6 +161,7 @@
                         View Credential <i class="fas fa-external-link-alt ml-1"></i>
                     </a>
                 </div>
+                <!-- ICCA -->
                 <div class="p-6 bg-card rounded-lg shadow-lg border-l-4 border-blue-500 transition duration-300 hover:scale-[1.03] card-glow">
                     <h3 class="text-xl font-semibold text-white">ICCA</h3>
                     <p class="text-sm text-gray-400">INE (eLearnSecurity)</p>
@@ -150,6 +169,7 @@
                         View Credential <i class="fas fa-external-link-alt ml-1"></i>
                     </a>
                 </div>
+                <!-- HTB CPTS -->
                 <div class="p-6 bg-card rounded-lg shadow-lg border-l-4 border-red-500 transition duration-300 hover:scale-[1.03] card-glow">
                     <h3 class="text-xl font-semibold text-white">HTB CPTS</h3>
                     <p class="text-sm text-red-400">Hack The Box (Currently Studying)</p>
@@ -160,6 +180,7 @@
             </div>
         </section>
 
+        <!-- Projects Section -->
         <section id="projects" class="mb-16">
             <h2 class="text-3xl font-bold text-accent mb-8 border-b border-gray-700 pb-3">Technical Projects</h2>
 
@@ -190,7 +211,7 @@
                     <h3 class="text-2xl font-semibold text-white">SIEM Lab (Home SOC) Build</h3>
                     <p class="text-gray-300 mt-2">Built a home SOC lab using the Elastic Stack (Elastic SIEM) to centralize logging, monitor endpoints, and detect simulated attacks in real-time. Practiced Blue Team detection engineering.</p>
                     <p class="text-xs text-accent mt-1">Keywords: Blue Team, Elastic SIEM, SOC, Log Analysis, Detection Engineering</p>
-                    <div class="mt-4 flex items-center space-x-4">
+                    <div class="mt-4 flex flex-wrap items-center gap-4">
                         <a href="https://github.com/Agentkiller9/SIEM-Lab-Home-SOC-Build" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">
                             View Write-up & Code (GitHub) <i class="fas fa-external-link-alt ml-1"></i>
                         </a>
@@ -222,8 +243,8 @@
 
                 <div class="p-6 bg-card rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-2xl font-semibold text-white">Penetration Testing Toolkit Usage</h3>
-                    <p class="text-gray-300 mt-2">Applied industry-standard tools (MetasTploit, John the Ripper, Hydra, Gobuster, and Nmap) during eJPT training to perform vulnerability scanning, brute force attacks, and web directory enumeration.</p>
-                    <p class="text-xs text-accent mt-1">Keywords: Metasploit, Brute Force, Vulnerability Scanning, eJPTv2</p>
+                    <p class="text-gray-300 mt-2">Applied industry-standard tools (Metasploit, John the Ripper, Hydra, Gobuster, and Nmap) during eJPT training to perform vulnerability scanning, brute force attacks, and web directory enumeration.</p>
+_                    <p class="text-xs text-accent mt-1">Keywords: Metasploit, Brute Force, Vulnerability Scanning, eJPTv2</p>
                     <div class="mt-4">
                         <a href="#" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">
                             View Documentation (Placeholder) <i class="fas fa-external-link-alt ml-1"></i>
@@ -233,7 +254,7 @@
 
                 <div class="p-6 bg-card rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-2xl font-semibold text-white">System & Network Reconnaissance Analysis</h3>
-                    <p class="text-gray-300 mt-2">Utilized Wireshark to capture and analyze encrypted and unencrypted network dumps before and after applying server hardening techniques to quantify security improvements.</p>
+                    <p class="text-gray-300 mt-2">Utilized Wireshark to capture and analyze encrypted and unencrypted network traffic dumps before and after applying server hardening techniques to quantify security improvements.</p>
                     <p class="text-xs text-accent mt-1">Keywords: Wireshark, Traffic Analysis, Reconnaissance, Protocol Deep Dive</p>
                     <div class="mt-4">
                         <a href="#" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">
@@ -244,6 +265,7 @@
             </div>
         </section>
 
+        <!-- Blog Section -->
         <section id="blog" class="mb-16">
             <h2 class="text-3xl font-bold text-accent mb-8 border-b border-gray-700 pb-3">Blog & Insights</h2>
             <div class="p-8 bg-card rounded-xl shadow-lg text-center border-t-4 border-gray-700 card-glow">
@@ -263,3 +285,4 @@
 
 </body>
 </html>
+
