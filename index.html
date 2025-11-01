@@ -5,62 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mugtaba Shaikeldin | Cyber Security Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Use Preconnect and Preload for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Ensures Inter loads correctly and has a proper fallback */
+        /* Base Styles for Futuristic Theme */
         body { 
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-            font-size: 16px; /* Explicit base size */
+            font-size: 16px; 
+            background-color: #0D1117; /* Deep Space Black */
         }
-        .bg-dark-900 { background-color: #0F172A; } /* Darker Blue/Slate */
-        .text-neon-green { color: #34D399; } /* Brighter, classic green */
-        .border-neon-green { border-color: #34D399; }
-        .hover-bg-neon-green { background-color: #34D399; color: #0F172A; }
+        /* Electric Cyan Accent Color */
+        .text-accent { color: #00FFFF; } 
+        .bg-card { background-color: rgba(22, 27, 34, 0.6); backdrop-filter: blur(5px); } /* Dark Translucent Card */
+
+        /* Custom Card Hover/Glow Effect */
+        .card-glow {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-glow:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.2);
+        }
         
         /* Fixes the size and aspect ratio of the TryHackMe badge iframe */
-        .thm-badge-container {
-            padding: 0.75rem; /* p-3 equivalent */
-            background-color: rgba(55, 65, 81, 0.5); /* bg-gray-700/50 equivalent */
-            border-radius: 0.5rem; /* rounded-lg equivalent */
-            overflow: hidden;
-        }
         .thm-badge-iframe {
             display: block;
             width: 100%;
-            height: 50px; /* Increased height for better fit */
-            min-height: 50px;
+            height: 56px; 
+            min-height: 56px;
         }
     </style>
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="bg-dark-900 text-gray-100 text-base">
+<body class="text-gray-100 text-base">
 
-    <!-- Header & Hero Section -->
-    <header class="py-16 border-b border-gray-800 shadow-xl">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h1 class="text-5xl sm:text-7xl font-extrabold text-white leading-tight tracking-tight">
+    <header class="py-16 border-b border-gray-700 shadow-xl bg-gray-800/20">
+        <div class="container mx-auto px-8 text-center">
+            <h1 class="text-6xl sm:text-7xl font-extrabold text-white leading-tight tracking-tight">
                 Mugtaba Shaikeldin
             </h1>
-            <p class="text-2xl sm:text-3xl text-neon-green mt-3 font-medium">
+            <p class="text-3xl sm:text-4xl text-accent mt-3 font-medium">
                 Cybersecurity Student | Penetration Tester & Red Team Enthusiast
             </p>
-            <p class="text-gray-400 mt-5 max-w-xl mx-auto text-lg">
+            <p class="text-gray-400 mt-5 max-w-2xl mx-auto text-lg">
                 Final Year Student at APU, specializing in ethical hacking and proactive defensive security.
             </p>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-4 py-16">
+    <main class="container mx-auto px-8 py-16">
 
-        <!-- About Me / Profiles Section -->
-        <section id="about" class="mb-16 p-8 bg-gray-800/60 rounded-xl shadow-2xl border-l-4 border-neon-green">
-            <h2 class="text-3xl font-bold text-neon-green mb-6 border-b border-gray-700 pb-3">About Me</h2>
+        <section id="about" class="mb-16 p-8 bg-card rounded-xl shadow-2xl border-l-4 border-accent">
+            <h2 class="text-3xl font-bold text-accent mb-6 border-b border-gray-700 pb-3">About Me</h2>
 
-            <div class="md:grid md:grid-cols-3 gap-8">
+            <div class="md:grid md:grid-cols-3 gap-10">
                 <div class="md:col-span-2 space-y-4 text-lg text-gray-300">
                     <p>I am a final-year cybersecurity student at APU, highly passionate about offensive security, penetration testing, and Red Teaming. My academic journey is complemented by hands-on experience in SecOps, technical support, and competitive challenge creation.</p>
                     <p>In my free time, I actively study and train on real-world platforms like **Hack The Box (HTB)** and **TryHackMe (THM)** to continuously sharpen my technical skills and stay current with the latest attack methodologies.</p>
@@ -69,19 +68,17 @@
                 <div class="mt-8 md:mt-0 md:col-span-1 space-y-4">
                     <h3 class="text-xl font-semibold text-white border-b border-gray-600 pb-1">Live Learning Profiles</h3>
                     
-                    <!-- HTB Profile Link -->
-                    <a href="https://app.hackthebox.com/profile/2433757" target="_blank" class="flex items-center space-x-3 p-3 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition duration-300">
-                        <i class="fa-solid fa-square-person-walking text-xl text-neon-green"></i>
+                    <a href="https://app.hackthebox.com/profile/2433757" target="_blank" class="card-glow flex items-center space-x-3 p-3 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition duration-300">
+                        <i class="fa-solid fa-square-person-walking text-xl text-accent"></i>
                         <div>
                             <span class="text-white font-semibold">Hack The Box</span>
                             <span class="text-xs text-gray-400 block">Current Rank & Progress</span>
                         </div>
                     </a>
                     
-                    <!-- THM Badge - FIX APPLIED -->
-                    <div class="thm-badge-container">
-                        <div class="flex items-center space-x-3 mb-1">
-                            <i class="fa-solid fa-bug-slash text-xl text-neon-green"></i>
+                    <div class="thm-badge-container card-glow">
+                        <div class="flex items-center space-x-3 mb-1 p-3 bg-gray-800/50 rounded-lg">
+                            <i class="fa-solid fa-bug-slash text-xl text-accent"></i>
                             <span class="text-white font-semibold">TryHackMe Badge</span>
                         </div>
                         <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=3100967" class="thm-badge-iframe" style='border:none;'></iframe>
@@ -92,15 +89,15 @@
             <div class="mt-10">
                 <h3 class="text-2xl font-semibold text-white border-b border-gray-600 pb-1 mb-4">Connect</h3>
                 <div class="flex flex-wrap gap-4">
-                    <a href="https://www.linkedin.com/in/mugtaba-shaikeldin/" target="_blank" class="flex items-center space-x-2 px-6 py-3 bg-blue-600 rounded-full text-white font-medium hover:bg-blue-700 transition shadow-lg">
+                    <a href="https://www.linkedin.com/in/mugtaba-shaikeldin/" target="_blank" class="card-glow flex items-center space-x-2 px-6 py-3 bg-blue-600 rounded-full text-white font-medium hover:bg-blue-700 transition shadow-lg">
                         <i class="fab fa-linkedin text-lg"></i>
                         <span>LinkedIn</span>
                     </a>
-                    <a href="https://github.com/Agentkiller9" target="_blank" class="flex items-center space-x-2 px-6 py-3 bg-gray-700 rounded-full text-white font-medium hover:bg-gray-600 transition shadow-lg">
+                    <a href="https://github.com/Agentkiller9" target="_blank" class="card-glow flex items-center space-x-2 px-6 py-3 bg-gray-700 rounded-full text-white font-medium hover:bg-gray-600 transition shadow-lg">
                         <i class="fab fa-github text-lg"></i>
                         <span>GitHub</span>
                     </a>
-                    <a href="https://medium.com/@mujtabaeisa9" target="_blank" class="flex items-center space-x-2 px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-300 transition shadow-lg">
+                    <a href="https://medium.com/@mujtabaeisa9" target="_blank" class="card-glow flex items-center space-x-2 px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-300 transition shadow-lg">
                         <i class="fab fa-medium text-lg"></i>
                         <span>Medium Blog</span>
                     </a>
@@ -108,62 +105,52 @@
             </div>
         </section>
 
-        <!-- Experience Section -->
         <section id="experience" class="mb-16">
-            <h2 class="text-3xl font-bold text-neon-green mb-8 border-b border-gray-700 pb-3">Experience</h2>
+            <h2 class="text-3xl font-bold text-accent mb-8 border-b border-gray-700 pb-3">Experience</h2>
 
             <div class="space-y-4">
-                <!-- SecOps Function Unit Member -->
-                <div class="p-4 bg-gray-800/60 rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300">
+                <div class="p-4 bg-card rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-xl font-semibold text-white">SecOps Function Unit Member (Part-Time)</h3>
                     <p class="text-md text-gray-400">APU | October 2025 - Present</p>
                 </div>
-                <!-- CTF Challenge Creator -->
-                <div class="p-4 bg-gray-800/60 rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300">
+                <div class="p-4 bg-card rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-xl font-semibold text-white">CTF Challenge Creator</h3>
                     <p class="text-md text-gray-400">CYNX | August 2025 - Present</p>
                 </div>
-                <!-- SecOps Intern -->
-                <div class="p-4 bg-gray-800/60 rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300">
+                <div class="p-4 bg-card rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-xl font-semibold text-white">SecOps Intern</h3>
                     <p class="text-md text-gray-400">APU | June 2025 - October 2025</p>
                 </div>
-                <!-- Technical Assistant -->
-                <div class="p-4 bg-gray-800/60 rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300">
+                <div class="p-4 bg-card rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-xl font-semibold text-white">Technical Assistant (Part-Time)</h3>
                     <p class="text-md text-gray-400">APU | December 2024 - Present</p>
                 </div>
-                <!-- Technical Assistant Trainee -->
-                <div class="p-4 bg-gray-800/60 rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300">
+                <div class="p-4 bg-card rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-xl font-semibold text-white">Technical Assistant Trainee (Part-Time)</h3>
                     <p class="text-md text-gray-400">APU | October 2024 - December 2024</p>
                 </div>
             </div>
         </section>
 
-        <!-- Certifications Section -->
         <section id="certifications" class="mb-16">
-            <h2 class="text-3xl font-bold text-neon-green mb-8 border-b border-gray-700 pb-3">Certifications & Training</h2>
+            <h2 class="text-3xl font-bold text-accent mb-8 border-b border-gray-700 pb-3">Certifications & Training</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- eJPTv2 -->
-                <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg border-l-4 border-yellow-500 transition duration-300 hover:scale-[1.03]">
+                <div class="p-6 bg-card rounded-lg shadow-lg border-l-4 border-yellow-500 transition duration-300 hover:scale-[1.03] card-glow">
                     <h3 class="text-xl font-semibold text-white">eJPTv2</h3>
                     <p class="text-sm text-gray-400">INE (eLearnSecurity)</p>
                     <a href="https://certs.ine.com/64b89560-1d87-45e6-af58-45caf486e6b8" target="_blank" class="mt-3 inline-block text-yellow-400 hover:text-yellow-300 text-sm font-medium">
                         View Credential <i class="fas fa-external-link-alt ml-1"></i>
                     </a>
                 </div>
-                <!-- ICCA -->
-                <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg border-l-4 border-blue-500 transition duration-300 hover:scale-[1.03]">
+                <div class="p-6 bg-card rounded-lg shadow-lg border-l-4 border-blue-500 transition duration-300 hover:scale-[1.03] card-glow">
                     <h3 class="text-xl font-semibold text-white">ICCA</h3>
                     <p class="text-sm text-gray-400">INE (eLearnSecurity)</p>
                     <a href="https://certs.ine.com/99d8db5a-92a0-4c3b-ab26-47daf1f144ab" target="_blank" class="mt-3 inline-block text-blue-400 hover:text-blue-300 text-sm font-medium">
                         View Credential <i class="fas fa-external-link-alt ml-1"></i>
                     </a>
                 </div>
-                <!-- HTB CPTS -->
-                <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg border-l-4 border-red-500 transition duration-300 hover:scale-[1.03]">
+                <div class="p-6 bg-card rounded-lg shadow-lg border-l-4 border-red-500 transition duration-300 hover:scale-[1.03] card-glow">
                     <h3 class="text-xl font-semibold text-white">HTB CPTS</h3>
                     <p class="text-sm text-red-400">Hack The Box (Currently Studying)</p>
                     <a href="https://app.hackthebox.com/profile/2433757" target="_blank" class="mt-3 inline-block text-red-400 hover:text-red-300 text-sm font-medium">
@@ -173,91 +160,83 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
         <section id="projects" class="mb-16">
-            <h2 class="text-3xl font-bold text-neon-green mb-8 border-b border-gray-700 pb-3">Technical Projects</h2>
+            <h2 class="text-3xl font-bold text-accent mb-8 border-b border-gray-700 pb-3">Technical Projects</h2>
 
             <div class="space-y-6">
-                <!-- Project 1: Rocky Linux OS Hardening & Pen Test -->
-                <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
+                <div class="p-6 bg-card rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-2xl font-semibold text-white">Rocky Linux OS Hardening & Penetration Testing</h3>
                     <p class="text-gray-300 mt-2">Conducted OS hardening (MFA, firewalld, account policies) on a Rocky Linux 9 VM and validated security by performing comparative penetration tests using Metasploit before and after hardening.</p>
-                    <p class="text-xs text-neon-green mt-1">Keywords: Linux Hardening, Firewalld, PAM, Metasploit, Comparative Analysis</p>
+                    <p class="text-xs text-accent mt-1">Keywords: Linux Hardening, Firewalld, PAM, Metasploit, Comparative Analysis</p>
                     <div class="mt-4">
-                        <a href="https://github.com/Agentkiller9/Rocky-Linux-Hardening" target="_blank" class="text-neon-green hover:text-white transition duration-300 font-medium">
+                        <a href="https://github.com/Agentkiller9/Rocky-Linux-Hardening" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">
                             View Report & Code (GitHub) <i class="fas fa-external-link-alt ml-1"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Project 2: Web & Email Server Hardening -->
-                <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
+                <div class="p-6 bg-card rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-2xl font-semibold text-white">Web and Email Server Hardening (Apache & Postfix/Dovecot)</h3>
                     <p class="text-gray-300 mt-2">Configured Apache, Postfix, and Dovecot servers, secured communication with SSL/TLS encryption, and tested them for vulnerabilities using offensive tools and packet analysis.</p>
-                    <p class="text-xs text-neon-green mt-1">Keywords: Postfix, Dovecot, Apache, SSL/TLS, Wireshark, Protocol Analysis</p>
+                    <p class="text-xs text-accent mt-1">Keywords: Postfix, Dovecot, Apache, SSL/TLS, Wireshark, Protocol Analysis</p>
                     <div class="mt-4">
-                        <a href="https://github.com/Agentkiller9/Web-and-Email-Server-Hardening" target="_blank" class="text-neon-green hover:text-white transition duration-300 font-medium">
+                        <a href="https://github.com/Agentkiller9/Web-and-Email-Server-Hardening" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">
                             View Documentation (GitHub) <i class="fas fa-external-link-alt ml-1"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Project 3: SIEM Lab -->
-                <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
+                <div class="p-6 bg-card rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-2xl font-semibold text-white">SIEM Lab (Home SOC) Build</h3>
                     <p class="text-gray-300 mt-2">Built a home SOC lab using the Elastic Stack (Elastic SIEM) to centralize logging, monitor endpoints, and detect simulated attacks in real-time. Practiced Blue Team detection engineering.</p>
-                    <p class="text-xs text-neon-green mt-1">Keywords: Blue Team, Elastic SIEM, SOC, Log Analysis, Detection Engineering</p>
+                    <p class="text-xs text-accent mt-1">Keywords: Blue Team, Elastic SIEM, SOC, Log Analysis, Detection Engineering</p>
                     <div class="mt-4 flex items-center space-x-4">
-                        <a href="https://github.com/Agentkiller9/SIEM-Lab-Home-SOC-Build" target="_blank" class="text-neon-green hover:text-white transition duration-300 font-medium">
+                        <a href="https://github.com/Agentkiller9/SIEM-Lab-Home-SOC-Build" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">
                             View Write-up & Code (GitHub) <i class="fas fa-external-link-alt ml-1"></i>
                         </a>
-                        <span class="text-gray-500 text-sm">| Based on this <a href="https://www.youtube.com/watch?v=2XLzMb9oZBI" target="_blank" class="text-gray-400 hover:text-neon-green">Tutorial Source</a></span>
+                        <span class="text-gray-500 text-sm">| Based on this <a href="https://www.youtube.com/watch?v=2XLzMb9oZBI" target="_blank" class="text-gray-400 hover:text-accent">Tutorial Source</a></span>
                     </div>
                 </div>
                 
-                <!-- Project 4: Packet Sniffer -->
-                <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
+                <div class="p-6 bg-card rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-2xl font-semibold text-white">Network Traffic Capturing Tool (Python)</h3>
                     <p class="text-gray-300 mt-2">Created a command-line interface (CLI) tool in Python to capture and analyze network packets, demonstrating foundational understanding of network protocols.</p>
-                    <p class="text-xs text-neon-green mt-1">Keywords: Python, Packet Capture, Scapy, Network Analysis</p>
+                    <p class="text-xs text-accent mt-1">Keywords: Python, Packet Capture, Scapy, Network Analysis</p>
                     <div class="mt-4">
-                        <a href="https://github.com/Agentkiller9/PacketSniffer" target="_blank" class="text-neon-green hover:text-white transition duration-300 font-medium">
+                        <a href="https://github.com/Agentkiller9/PacketSniffer" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">
                             View Code (GitHub) <i class="fas fa-external-link-alt ml-1"></i>
                         </a>
                     </div>
                 </div>
                 
-                <!-- Project 5: Keystroke Tracker -->
-                <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
+                <div class="p-6 bg-card rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-2xl font-semibold text-white">Keystroke Tracker (Ethical Keylogger in Python)</h3>
                     <p class="text-gray-300 mt-2">Developed an ethical keylogger in Python to explore malware persistence and data capture techniques, emphasizing defensive programming and security awareness.</p>
-                    <p class="text-xs text-neon-green mt-1">Keywords: Python, Ethical Hacking, Malware Analysis, Pynput</p>
+                    <p class="text-xs text-accent mt-1">Keywords: Python, Ethical Hacking, Malware Analysis, Pynput</p>
                     <div class="mt-4">
-                        <a href="https://github.com/Agentkiller9/KeystrokeTracker" target="_blank" class="text-neon-green hover:text-white transition duration-300 font-medium">
+                        <a href="https://github.com/Agentkiller9/KeystrokeTracker" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">
                             View Code (GitHub) <i class="fas fa-external-link-alt ml-1"></i>
                         </a>
                     </div>
                 </div>
 
-                 <!-- Project 6: Penetration Testing Toolkit (Placeholder) -->
-                <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
+                <div class="p-6 bg-card rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-2xl font-semibold text-white">Penetration Testing Toolkit Usage</h3>
                     <p class="text-gray-300 mt-2">Applied industry-standard tools (Metasploit, John the Ripper, Hydra, Gobuster, and Nmap) during eJPT training to perform vulnerability scanning, brute force attacks, and web directory enumeration.</p>
-                    <p class="text-xs text-neon-green mt-1">Keywords: Metasploit, Brute Force, Vulnerability Scanning, eJPTv2</p>
+                    <p class="text-xs text-accent mt-1">Keywords: Metasploit, Brute Force, Vulnerability Scanning, eJPTv2</p>
                     <div class="mt-4">
-                        <a href="#" target="_blank" class="text-neon-green hover:text-white transition duration-300 font-medium">
+                        <a href="#" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">
                             View Documentation (Placeholder) <i class="fas fa-external-link-alt ml-1"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Project 7: System & Network Reconnaissance (Placeholder) -->
-                <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
+                <div class="p-6 bg-card rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-2xl font-semibold text-white">System & Network Reconnaissance Analysis</h3>
                     <p class="text-gray-300 mt-2">Utilized Wireshark to capture and analyze encrypted and unencrypted network traffic dumps before and after applying server hardening techniques to quantify security improvements.</p>
-                    <p class="text-xs text-neon-green mt-1">Keywords: Wireshark, Traffic Analysis, Reconnaissance, Protocol Deep Dive</p>
+                    <p class="text-xs text-accent mt-1">Keywords: Wireshark, Traffic Analysis, Reconnaissance, Protocol Deep Dive</p>
                     <div class="mt-4">
-                        <a href="#" target="_blank" class="text-neon-green hover:text-white transition duration-300 font-medium">
+                        <a href="#" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">
                             View Documentation (Placeholder) <i class="fas fa-external-link-alt ml-1"></i>
                         </a>
                     </div>
@@ -265,13 +244,12 @@
             </div>
         </section>
 
-        <!-- Blog Section -->
         <section id="blog" class="mb-16">
-            <h2 class="text-3xl font-bold text-neon-green mb-8 border-b border-gray-700 pb-3">Blog & Insights</h2>
-            <div class="p-8 bg-gray-800/60 rounded-xl shadow-lg text-center border-t-4 border-gray-700">
+            <h2 class="text-3xl font-bold text-accent mb-8 border-b border-gray-700 pb-3">Blog & Insights</h2>
+            <div class="p-8 bg-card rounded-xl shadow-lg text-center border-t-4 border-gray-700 card-glow">
                 <p class="text-gray-200 text-2xl font-semibold">Share your knowledge and technical write-ups!</p>
                 <p class="text-gray-400 mt-4 text-lg">My technical blog is where I dive deep into exploit analysis, new hardening techniques, and CTF write-ups, providing valuable insights into the world of cybersecurity.</p>
-                <a href="https://medium.com/@mujtabaeisa9" target="_blank" class="mt-6 inline-block bg-neon-green text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-green-400 transition duration-300 hover-bg-neon-green">
+                <a href="https://medium.com/@mujtabaeisa9" target="_blank" class="mt-6 inline-block bg-accent text-black font-bold py-3 px-8 rounded-full shadow-lg hover:bg-cyan-500 transition duration-300">
                     Read My Latest Insights on Medium <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
@@ -280,7 +258,7 @@
     </main>
 
     <footer class="text-center py-8 border-t border-gray-800">
-        <p class="text-gray-500 text-sm">&copy; 2025 Mugtaba Shaikeldin. Built with Tailwind CSS.</p>
+        <p class="text-gray-500 text-sm">&copy; 2025 Mugtaba Shaikeldin. Built with HTML & Tailwind CSS.</p>
     </footer>
 
 </body>
