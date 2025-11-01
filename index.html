@@ -32,8 +32,8 @@
         .thm-badge-iframe {
             display: block;
             width: 100%;
-            height: 56px; 
-            min-height: 56px;
+            height: 60px; /* Adjusted height for perfect fit */
+            min-height: 60px;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -62,7 +62,7 @@
             <div class="md:grid md:grid-cols-3 gap-10">
                 <div class="md:col-span-2 space-y-4 text-lg text-gray-300">
                     <p>I am a final-year cybersecurity student at APU, highly passionate about offensive security, penetration testing, and Red Teaming. My academic journey is complemented by hands-on experience in SecOps, technical support, and competitive challenge creation.</p>
-                    <p>In my free time, I actively study and train on real-world platforms like **Hack The Box (HTB)** and **TryHackMe (THM)** to continuously sharpen my technical skills and stay current with the latest attack methodologies.</p>
+                    <p>In my free time, I actively study and train on real-world platforms like <strong class="text-accent">Hack The Box (HTB)</strong> and <strong class="text-accent">TryHackMe (THM)</strong> to continuously sharpen my technical skills and stay current with the latest attack methodologies.</p>
                 </div>
                 
                 <div class="mt-8 md:mt-0 md:col-span-1 space-y-4">
@@ -76,8 +76,8 @@
                         </div>
                     </a>
                     
-                    <div class="thm-badge-container card-glow">
-                        <div class="flex items-center space-x-3 mb-1 p-3 bg-gray-800/50 rounded-lg">
+                    <div class="card-glow bg-gray-700/50 rounded-lg p-3 space-y-2">
+                        <div class="flex items-center space-x-3">
                             <i class="fa-solid fa-bug-slash text-xl text-accent"></i>
                             <span class="text-white font-semibold">TryHackMe Badge</span>
                         </div>
@@ -222,7 +222,7 @@
 
                 <div class="p-6 bg-card rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-2xl font-semibold text-white">Penetration Testing Toolkit Usage</h3>
-                    <p class="text-gray-300 mt-2">Applied industry-standard tools (Metasploit, John the Ripper, Hydra, Gobuster, and Nmap) during eJPT training to perform vulnerability scanning, brute force attacks, and web directory enumeration.</p>
+                    <p class="text-gray-300 mt-2">Applied industry-standard tools (MetasTploit, John the Ripper, Hydra, Gobuster, and Nmap) during eJPT training to perform vulnerability scanning, brute force attacks, and web directory enumeration.</p>
                     <p class="text-xs text-accent mt-1">Keywords: Metasploit, Brute Force, Vulnerability Scanning, eJPTv2</p>
                     <div class="mt-4">
                         <a href="#" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">
@@ -233,7 +233,7 @@
 
                 <div class="p-6 bg-card rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300 card-glow">
                     <h3 class="text-2xl font-semibold text-white">System & Network Reconnaissance Analysis</h3>
-                    <p class="text-gray-300 mt-2">Utilized Wireshark to capture and analyze encrypted and unencrypted network traffic dumps before and after applying server hardening techniques to quantify security improvements.</p>
+                    <p class="text-gray-300 mt-2">Utilized Wireshark to capture and analyze encrypted and unencrypted network dumps before and after applying server hardening techniques to quantify security improvements.</p>
                     <p class="text-xs text-accent mt-1">Keywords: Wireshark, Traffic Analysis, Reconnaissance, Protocol Deep Dive</p>
                     <div class="mt-4">
                         <a href="#" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">
