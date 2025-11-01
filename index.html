@@ -5,18 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mugtaba Shaikeldin | Cyber Security Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Preconnect and Preload for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        /* Ensures Inter loads correctly and has a proper fallback */
+        body { 
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            font-size: 16px; /* Explicit base size */
+        }
         .bg-dark-900 { background-color: #0F172A; } /* Darker Blue/Slate */
         .text-neon-green { color: #34D399; } /* Brighter, classic green */
         .border-neon-green { border-color: #34D399; }
         .hover-bg-neon-green { background-color: #34D399; color: #0F172A; }
+        
+        /* Fixes the size and aspect ratio of the TryHackMe badge iframe */
+        .thm-badge-container {
+            padding: 0.75rem; /* p-3 equivalent */
+            background-color: rgba(55, 65, 81, 0.5); /* bg-gray-700/50 equivalent */
+            border-radius: 0.5rem; /* rounded-lg equivalent */
+            overflow: hidden;
+        }
+        .thm-badge-iframe {
+            display: block;
+            width: 100%;
+            height: 50px; /* Increased height for better fit */
+            min-height: 50px;
+        }
     </style>
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="bg-dark-900 text-gray-100">
+<body class="bg-dark-900 text-gray-100 text-base">
 
+    <!-- Header & Hero Section -->
     <header class="py-16 border-b border-gray-800 shadow-xl">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h1 class="text-5xl sm:text-7xl font-extrabold text-white leading-tight tracking-tight">
@@ -33,6 +56,7 @@
 
     <main class="max-w-4xl mx-auto px-4 py-16">
 
+        <!-- About Me / Profiles Section -->
         <section id="about" class="mb-16 p-8 bg-gray-800/60 rounded-xl shadow-2xl border-l-4 border-neon-green">
             <h2 class="text-3xl font-bold text-neon-green mb-6 border-b border-gray-700 pb-3">About Me</h2>
 
@@ -45,6 +69,7 @@
                 <div class="mt-8 md:mt-0 md:col-span-1 space-y-4">
                     <h3 class="text-xl font-semibold text-white border-b border-gray-600 pb-1">Live Learning Profiles</h3>
                     
+                    <!-- HTB Profile Link -->
                     <a href="https://app.hackthebox.com/profile/2433757" target="_blank" class="flex items-center space-x-3 p-3 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition duration-300">
                         <i class="fa-solid fa-square-person-walking text-xl text-neon-green"></i>
                         <div>
@@ -53,12 +78,13 @@
                         </div>
                     </a>
                     
-                    <div class="p-3 bg-gray-700/50 rounded-lg overflow-hidden">
+                    <!-- THM Badge - FIX APPLIED -->
+                    <div class="thm-badge-container">
                         <div class="flex items-center space-x-3 mb-1">
                             <i class="fa-solid fa-bug-slash text-xl text-neon-green"></i>
                             <span class="text-white font-semibold">TryHackMe Badge</span>
                         </div>
-                        <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=3100967" style='border:none; width:100%; height: 35px;'></iframe>
+                        <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=3100967" class="thm-badge-iframe" style='border:none;'></iframe>
                     </div>
                 </div>
             </div>
@@ -82,26 +108,32 @@
             </div>
         </section>
 
+        <!-- Experience Section -->
         <section id="experience" class="mb-16">
             <h2 class="text-3xl font-bold text-neon-green mb-8 border-b border-gray-700 pb-3">Experience</h2>
 
             <div class="space-y-4">
+                <!-- SecOps Function Unit Member -->
                 <div class="p-4 bg-gray-800/60 rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300">
                     <h3 class="text-xl font-semibold text-white">SecOps Function Unit Member (Part-Time)</h3>
                     <p class="text-md text-gray-400">APU | October 2025 - Present</p>
                 </div>
+                <!-- CTF Challenge Creator -->
                 <div class="p-4 bg-gray-800/60 rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300">
                     <h3 class="text-xl font-semibold text-white">CTF Challenge Creator</h3>
                     <p class="text-md text-gray-400">CYNX | August 2025 - Present</p>
                 </div>
+                <!-- SecOps Intern -->
                 <div class="p-4 bg-gray-800/60 rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300">
                     <h3 class="text-xl font-semibold text-white">SecOps Intern</h3>
                     <p class="text-md text-gray-400">APU | June 2025 - October 2025</p>
                 </div>
+                <!-- Technical Assistant -->
                 <div class="p-4 bg-gray-800/60 rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300">
                     <h3 class="text-xl font-semibold text-white">Technical Assistant (Part-Time)</h3>
                     <p class="text-md text-gray-400">APU | December 2024 - Present</p>
                 </div>
+                <!-- Technical Assistant Trainee -->
                 <div class="p-4 bg-gray-800/60 rounded-lg shadow-md hover:bg-gray-700/70 transition duration-300">
                     <h3 class="text-xl font-semibold text-white">Technical Assistant Trainee (Part-Time)</h3>
                     <p class="text-md text-gray-400">APU | October 2024 - December 2024</p>
@@ -109,10 +141,12 @@
             </div>
         </section>
 
+        <!-- Certifications Section -->
         <section id="certifications" class="mb-16">
             <h2 class="text-3xl font-bold text-neon-green mb-8 border-b border-gray-700 pb-3">Certifications & Training</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- eJPTv2 -->
                 <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg border-l-4 border-yellow-500 transition duration-300 hover:scale-[1.03]">
                     <h3 class="text-xl font-semibold text-white">eJPTv2</h3>
                     <p class="text-sm text-gray-400">INE (eLearnSecurity)</p>
@@ -120,6 +154,7 @@
                         View Credential <i class="fas fa-external-link-alt ml-1"></i>
                     </a>
                 </div>
+                <!-- ICCA -->
                 <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg border-l-4 border-blue-500 transition duration-300 hover:scale-[1.03]">
                     <h3 class="text-xl font-semibold text-white">ICCA</h3>
                     <p class="text-sm text-gray-400">INE (eLearnSecurity)</p>
@@ -127,6 +162,7 @@
                         View Credential <i class="fas fa-external-link-alt ml-1"></i>
                     </a>
                 </div>
+                <!-- HTB CPTS -->
                 <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg border-l-4 border-red-500 transition duration-300 hover:scale-[1.03]">
                     <h3 class="text-xl font-semibold text-white">HTB CPTS</h3>
                     <p class="text-sm text-red-400">Hack The Box (Currently Studying)</p>
@@ -137,10 +173,12 @@
             </div>
         </section>
 
+        <!-- Projects Section -->
         <section id="projects" class="mb-16">
             <h2 class="text-3xl font-bold text-neon-green mb-8 border-b border-gray-700 pb-3">Technical Projects</h2>
 
             <div class="space-y-6">
+                <!-- Project 1: Rocky Linux OS Hardening & Pen Test -->
                 <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
                     <h3 class="text-2xl font-semibold text-white">Rocky Linux OS Hardening & Penetration Testing</h3>
                     <p class="text-gray-300 mt-2">Conducted OS hardening (MFA, firewalld, account policies) on a Rocky Linux 9 VM and validated security by performing comparative penetration tests using Metasploit before and after hardening.</p>
@@ -152,6 +190,7 @@
                     </div>
                 </div>
 
+                <!-- Project 2: Web & Email Server Hardening -->
                 <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
                     <h3 class="text-2xl font-semibold text-white">Web and Email Server Hardening (Apache & Postfix/Dovecot)</h3>
                     <p class="text-gray-300 mt-2">Configured Apache, Postfix, and Dovecot servers, secured communication with SSL/TLS encryption, and tested them for vulnerabilities using offensive tools and packet analysis.</p>
@@ -163,6 +202,7 @@
                     </div>
                 </div>
 
+                <!-- Project 3: SIEM Lab -->
                 <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
                     <h3 class="text-2xl font-semibold text-white">SIEM Lab (Home SOC) Build</h3>
                     <p class="text-gray-300 mt-2">Built a home SOC lab using the Elastic Stack (Elastic SIEM) to centralize logging, monitor endpoints, and detect simulated attacks in real-time. Practiced Blue Team detection engineering.</p>
@@ -175,6 +215,7 @@
                     </div>
                 </div>
                 
+                <!-- Project 4: Packet Sniffer -->
                 <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
                     <h3 class="text-2xl font-semibold text-white">Network Traffic Capturing Tool (Python)</h3>
                     <p class="text-gray-300 mt-2">Created a command-line interface (CLI) tool in Python to capture and analyze network packets, demonstrating foundational understanding of network protocols.</p>
@@ -186,6 +227,7 @@
                     </div>
                 </div>
                 
+                <!-- Project 5: Keystroke Tracker -->
                 <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
                     <h3 class="text-2xl font-semibold text-white">Keystroke Tracker (Ethical Keylogger in Python)</h3>
                     <p class="text-gray-300 mt-2">Developed an ethical keylogger in Python to explore malware persistence and data capture techniques, emphasizing defensive programming and security awareness.</p>
@@ -197,7 +239,8 @@
                     </div>
                 </div>
 
-                 <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
+                 <!-- Project 6: Penetration Testing Toolkit (Placeholder) -->
+                <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
                     <h3 class="text-2xl font-semibold text-white">Penetration Testing Toolkit Usage</h3>
                     <p class="text-gray-300 mt-2">Applied industry-standard tools (Metasploit, John the Ripper, Hydra, Gobuster, and Nmap) during eJPT training to perform vulnerability scanning, brute force attacks, and web directory enumeration.</p>
                     <p class="text-xs text-neon-green mt-1">Keywords: Metasploit, Brute Force, Vulnerability Scanning, eJPTv2</p>
@@ -208,6 +251,7 @@
                     </div>
                 </div>
 
+                <!-- Project 7: System & Network Reconnaissance (Placeholder) -->
                 <div class="p-6 bg-gray-800/60 rounded-lg shadow-lg hover:bg-gray-700/70 transition duration-300">
                     <h3 class="text-2xl font-semibold text-white">System & Network Reconnaissance Analysis</h3>
                     <p class="text-gray-300 mt-2">Utilized Wireshark to capture and analyze encrypted and unencrypted network traffic dumps before and after applying server hardening techniques to quantify security improvements.</p>
@@ -221,6 +265,7 @@
             </div>
         </section>
 
+        <!-- Blog Section -->
         <section id="blog" class="mb-16">
             <h2 class="text-3xl font-bold text-neon-green mb-8 border-b border-gray-700 pb-3">Blog & Insights</h2>
             <div class="p-8 bg-gray-800/60 rounded-xl shadow-lg text-center border-t-4 border-gray-700">
@@ -240,14 +285,3 @@
 
 </body>
 </html>
-```eof
-
-### Final Steps to Deployment
-
-1.  **Main Portfolio Deployment:** Upload this final `index.html` file to your **`Agentkiller9/Cybersecurity-Portfolio`** repository.
-2.  **Enable GitHub Pages:** Go to **Settings > Pages** in the `Cybersecurity-Portfolio` repo, select your `main` branch, and set the folder to `/ (root)`.
-3.  **Project Content:** Populate your three new project repositories with the `README.md` and structured files we planned out.
-
-Your live portfolio link will be active shortly after deploying GitHub Pages (it usually takes 1-5 minutes).
-
-Is there anything else I can help you document, or do you need help structuring the files within those new repositories?
