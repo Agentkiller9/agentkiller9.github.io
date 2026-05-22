@@ -11,143 +11,37 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        /* Base Styles for Futuristic Theme */
-        body { 
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-            font-size: 16px; 
-            background-color: #0D1117;
-            background-image: radial-gradient(ellipse at top, #1a202c 0%, #0D1117 70%);
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
-        
-        /* Interactive Particle Background Container */
-        #tsparticles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Place it behind all content */
-        }
-
-        /* Electric Cyan Accent Color */
-        .text-accent { color: #00FFFF; } 
-
-        /* Polished Card: Translucent with a subtle border */
-        .bg-card { 
-            background-color: rgba(22, 27, 34, 0.7); /* More opaque */
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(100, 116, 139, 0.3);
-        }
-
-        /* Softer, more professional glow effect */
-        .card-glow {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-glow:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-        }
-        
-        /* Typing effect cursor */
-        .typing-cursor {
-            display: inline-block;
-            width: 10px;
-            height: 2.5rem;
-            background-color: #00FFFF;
-            animation: blink 1s infinite;
-            margin-left: 8px;
-            vertical-align: middle;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* Scroll-in Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Final Badge Fix */
-        .thm-badge-iframe {
-            display: block;
-            width: 100%;
-            height: 120px;
-            min-height: 120px;
-        }
-
-        /* Animated Gradient Header */
-        .header-animated-gradient {
-            background: linear-gradient(-45deg, #0D1117, #1a202c, #0D1117, #162b2b);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Hollow Button Style */
-        .btn-hollow {
-            background-color: transparent;
-            border: 2px solid #00FFFF;
-            color: #00FFFF;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .btn-hollow:hover {
-            background-color: #00FFFF;
-            color: #0D1117; /* Dark text on hover */
-        }
-        .btn-hollow:disabled {
-            border-color: #555;
-            color: #555;
-            cursor: not-allowed;
-        }
-
-        /* NEW: Gemini Loader */
-        .loader {
-            width: 24px;
-            height: 24px;
-            border: 3px solid #00FFFF;
-            border-bottom-color: transparent;
-            border-radius: 50%;
-            display: inline-block;
-            box-sizing: border-box;
-            animation: rotation 1s linear infinite;
-        }
-        @keyframes rotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* NEW: Gemini Response Container */
-        .gemini-response-container {
-            background-color: rgba(13, 17, 23, 0.7); /* Even darker card */
-            border: 1px solid rgba(100, 116, 139, 0.3);
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin-top: 1.5rem;
-            display: none; /* Hidden by default */
-        }
-        .gemini-response-sources {
-            margin-top: 0.75rem;
-            border-top: 1px solid rgba(100, 116, 139, 0.3);
-            padding-top: 0.75rem;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="text-gray-100 text-base min-h-screen">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-card bg-opacity-80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-700/50">
+        <div class="container mx-auto px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a class="text-accent font-bold text-xl" href="index.html">Mugtaba Shaikeldin</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-white hover:text-accent transition">Portfolio</a>
+                    <a href="blog.html" class="text-white hover:text-accent transition">Blog</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-white hover:text-accent focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="index.html" class="block py-2 px-8 text-sm text-white hover:bg-gray-700">Portfolio</a>
+            <a href="blog.html" class="block py-2 px-8 text-sm text-white hover:bg-gray-700">Blog</a>
+        </div>
+    </nav>
+
 
     <!-- This div is the container for the particle background -->
     <div id="tsparticles"></div>
@@ -400,16 +294,14 @@
         <section id="blog" class="reveal mb-16">
             <h2 class="text-3xl font-bold text-accent mb-8 border-b border-gray-700 pb-3">Blog & Insights</h2>
             <div class="p-8 bg-card rounded-xl shadow-lg text-center border-t-4 border-gray-700 card-glow">
-                <p class="text-gray-200 text-2xl font-semibold">Share your knowledge and technical write-ups!</p>
-                <p class="text-gray-400 mt-4 text-lg">My technical blog is where I dive deep into exploit analysis, new hardening techniques, and CTF write-ups.</p>
-                
-                <a href="https://medium.com/@mujtabaeisa9" target="_blank" class="mt-6 inline-block btn-hollow font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
-                    Read My Latest Insights on Medium <i class="fas fa-arrow-right ml-2"></i>
+                <p class="text-gray-200 text-2xl font-semibold">I've moved my blog!</p>
+                <p class="text-gray-400 mt-4 text-lg">I now host my own blog on this website. Check it out for my latest posts on cybersecurity, CTF write-ups, and more.</p>
+                <a href="blog.html" class="mt-6 inline-block btn-hollow font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
+                    Visit the Blog <i class="fas fa-arrow-right ml-2"></i>
                 </a>
-
-
             </div>
         </section>
+
 
     </main>
 
@@ -417,7 +309,7 @@
         <p class="text-gray-500 text-sm">&copy; 2025 Mugtaba Shaikeldin. Built with HTML, Tailwind CSS, and tsparticles.</p>
     </footer>
 
-    <!-- JAVASCRIPT FOR ANIMATIONS AND API -->
+     <script src="js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
@@ -526,11 +418,9 @@
                 revealObserver.observe(el);
             });
 
-            // --- 4. GEMINI API CALL ---
-            // REMOVED
-
         });
     </script>
+
 
 </body>
 </html>

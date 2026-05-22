@@ -1,0 +1,131 @@
+        /* Base Styles for Futuristic Theme */
+        body { 
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            font-size: 16px; 
+            background-color: #0D1117;
+            background-image: radial-gradient(ellipse at top, #1a202c 0%, #0D1117 70%);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        
+        /* Interactive Particle Background Container */
+        #tsparticles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place it behind all content */
+        }
+
+        /* Electric Cyan Accent Color */
+        .text-accent { color: #00FFFF; } 
+
+        /* Polished Card: Translucent with a subtle border */
+        .bg-card { 
+            background-color: rgba(22, 27, 34, 0.7); /* More opaque */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+        }
+
+        /* Softer, more professional glow effect */
+        .card-glow {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-glow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+        }
+        
+        /* Typing effect cursor */
+        .typing-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 2.5rem;
+            background-color: #00FFFF;
+            animation: blink 1s infinite;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Scroll-in Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Final Badge Fix */
+        .thm-badge-iframe {
+            display: block;
+            width: 100%;
+            height: 120px;
+            min-height: 120px;
+        }
+
+        /* Animated Gradient Header */
+        .header-animated-gradient {
+            background: linear-gradient(-45deg, #0D1117, #1a202c, #0D1117, #162b2b);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hollow Button Style */
+        .btn-hollow {
+            background-color: transparent;
+            border: 2px solid #00FFFF;
+            color: #00FFFF;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .btn-hollow:hover {
+            background-color: #00FFFF;
+            color: #0D1117; /* Dark text on hover */
+        }
+        .btn-hollow:disabled {
+            border-color: #555;
+            color: #555;
+            cursor: not-allowed;
+        }
+
+        /* NEW: Gemini Loader */
+        .loader {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #00FFFF;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* NEW: Gemini Response Container */
+        .gemini-response-container {
+            background-color: rgba(13, 17, 23, 0.7); /* Even darker card */
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            display: none; /* Hidden by default */
+        }
+        .gemini-response-sources {
+            margin-top: 0.75rem;
+            border-top: 1px solid rgba(100, 116, 139, 0.3);
+            padding-top: 0.75rem;
+        }
