@@ -118,6 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('skills-container')) {
         loadSkills();
     }
+
+    if (document.getElementById('projects-preview-container')) {
+        loadProjectsPreview();
+    }
+
+    if (document.getElementById('blog-preview-container')) {
+        loadBlogPreview();
+    }
     // Animations
     anime({
         targets: '.header-animated-gradient',
@@ -393,3 +401,84 @@ function filterPosts(posts) {
 
     displayPosts(filteredPosts);
 }
+
+async function loadProjectsPreview() {
+    const projectsContainer = document.getElementById('projects-preview-container');
+    if (!projectsContainer) return;
+
+    const response = await fetch('projects.json');
+    const projects = await response.json();
+
+    projectsContainer.innerHTML = '';
+    projects.slice(0, 3).forEach(project => {
+        const projectElement = document.createElement('div');
+        projectElement.className = 'bg-card rounded-lg shadow-lg overflow-hidden card-glow';
+        
+        let tagsHtml = '';
+        if (project.tags) {
+            tagsHtml = project.tags.map(tag => `<span class="text-xs text-accent bg-red-900/50 px-2 py-1 rounded-full">${tag}</span>`).join('');
+        }
+
+        let linksHtml = '';
+        if (project.url) {
+            linksHtml += `<a href="${project.url}" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">View Code (GitHub) <i class="fas fa-external-link-alt ml-1"></i></a>`;
+        }
+        if (project.tutorialUrl) {
+            linksHtml += `<a href="${project.tutorialUrl}" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium ml-4">View Tutorial <i class="fas fa-external-link-alt ml-1"></i></a>`;
+        }
+
+        projectElement.innerHTML = `
+            <div class="p-6">
+                <h3 class="text-xl font-semibold text-white">${project.title}</h3>
+                <p class="text-gray-300 mt-2 h-24 overflow-hidden">${project.description}</p>
+                <div class="flex flex-wrap gap-2 mt-3">
+                    ${tagsHtml}
+                </div>
+                <div class="mt-4">
+                    ${linksHtml}
+                </div>
+            </div>
+        `;
+        projectsContainer.appendChild(projectElement);
+    });
+}
+
+async function loadBlogPreview() {
+    const blogContainer = document.getElementById('blog-preview-container');
+    if (!blogContainer) return;
+
+    try {
+        const response = await fetch('_posts/');
+        const files = await response.text();
+        const fileNames = files.match(/href="([^"]+\.md)"/g).map(href => href.substring(6, href.length - 1));
+
+        const posts = await Promise.all(fileNames.slice(0, 3).map(async (file) => {
+            const postResponse = await fetch(`_posts/${file}`);
+            const postContent = await postResponse.text();
+            const frontMatter = parseFrontMatter(postContent);
+            return { ...frontMatter, fileName: file };
+        }));
+
+        blogContainer.innerHTML = '';
+        posts.forEach(post => {
+            const postElement = document.createElement('div');
+            postElement.className = 'bg-card rounded-lg shadow-lg overflow-hidden card-glow';
+            postElement.innerHTML = `
+                <div class="p-6">
+                    <p class="text-sm text-gray-400">${post.date}</p>
+                    <h3 class="text-xl font-semibold text-white mt-2">${post.title}</h3>
+                    <p class="text-gray-300 mt-2 h-24 overflow-hidden">${post.excerpt}</p>
+                    <a href="post.html?post=${post.fileName}" class="text-accent hover:text-white transition duration-300 font-medium mt-4 inline-block">
+                        Read More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            `;
+            blogContainer.appendChild(postElement);
+        });
+
+    } catch (error) {
+        console.error("Error fetching posts for preview: ", error);
+        blogContainer.innerHTML = '<p class="text-red-500">Could not load blog posts.</p>';
+    }
+}
+

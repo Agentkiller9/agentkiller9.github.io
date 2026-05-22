@@ -1,0 +1,87 @@
+---
+title: "eJPT Host &amp; Network Penetration Testing: System-Host Based Attacks CTF 1"
+author: "Mujtaba Shaikeldin"
+date: "2025-12-23 23:20:15"
+categories: [cybersecurity, ejptv2, red-team, pentesting]
+---
+
+Hey guys this is my first CTF write-up, and it is going to be a CTF write-up for the Host & Network Penetration Testing: System-Host Based Attacks CTF 1 from eJPT studying path.
+
+This CTF had 2 targets, each had 2 flags.
+
+Here are the tasks:
+
+*   **Flag 1**: User ‘bob’ might not have chosen a strong password. Try common passwords to gain access to the server where the flag is located. (target1.ine.local)
+*   **Flag 2**: Valuable files are often on the C: drive. Explore it thoroughly. (target1.ine.local)
+*   **Flag 3**: By attempting to guess SMB user credentials, you may uncover important information that could lead you to the next flag. (target2.ine.local)
+*   **Flag 4**: The Desktop directory might have what you’re looking for. Enumerate its contents. (target2.ine.local)
+
+And here are the tools used:
+
+*   Nmap
+*   Hydra
+*   Cadaver
+*   Metasploit Framework
+
+### Nmap
+
+The following command has been used to scan for the open ports in both target machines:
+
+*   nmap -sV -p- \[TARGET IP\]
+
+### Flag 1
+
+After using nmap, we can see that first target is running an IIS server. If you go to the browser and type \[TARGET IP ADDRESS\]/webdav/ it is going to ask for credentials. Another way to test if the webdav directory needs authentication is by using cadaver.
+
+*   cadaver
+
+Since the username ‘bob’ was provided all that was needed is to get the password. So hydra was utilized with a word list for the password. The following command returned the correct credentials.
+
+*   hydra -l bob -P /usr/share/metasploit-framework/data/wordlists/unix\_passwords/txt \[IP ADDRESS\] http-get /webdav/
+
+![](https://cdn-images-1.medium.com/max/933/1*CMDL8HZOgjsK5VRi3bGqBA.png)
+
+*   After getting the password we can head to the webdav directory and authenticate ourselves as bob
+
+![](https://cdn-images-1.medium.com/max/941/1*-Je8T0gpA3P8K49l9Xni2g.png)
+
+### Flag 2
+
+*   Using davtest and authenticating as bob, upload an .asp webshell
+
+![](https://cdn-images-1.medium.com/max/628/1*jC7G3o8WNx57M-s3W6aSow.png)
+
+*   Then we will be able to see the webshell in the webdav directory
+
+![](https://cdn-images-1.medium.com/max/417/1*xR7T1f6A6p0m_dJAPq-xdQ.png)
+
+*   Click on the webshell or browse to it directly and hunt for flag 2
+
+![](https://cdn-images-1.medium.com/max/446/1*4mOF0lguT7qwSkZkua9hUg.png)
+
+*   Just a simple dir in C:\\ and we found flag 2
+
+![](https://cdn-images-1.medium.com/max/690/1*t3AOs2uv1B7uHUPuNgzyLA.png)
+
+### Flag 3
+
+*   Flag 3 and 4 are on the second target in the lab.
+
+![](https://cdn-images-1.medium.com/max/917/1*4toDSx12v3fakp_VgU36zA.png)
+
+*   After getting the administrator password, the target is basically ours.
+*   Then using MSF module windows/smb/psexec we can get a meterpreter shell using the credentials found
+
+![](https://cdn-images-1.medium.com/max/920/1*5aNPu4EJZR--Zr61ND38Og.png)
+
+*   Then use shell to drop into cmd session and search for flag 3
+
+![](https://cdn-images-1.medium.com/max/481/1*xDOjnqhtf1T2DqNy9QkKDQ.png)
+
+### Flag 4
+
+*   For flag 4, you either do a manual search or use a one liner to find the flag. I did manual since they hinted about the Desktop
+
+![](https://cdn-images-1.medium.com/max/427/1*EM2VJbKmbRWTjDxImaKwYw.png)
+
+![](https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=66dbfeed24fc)
