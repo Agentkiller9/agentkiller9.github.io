@@ -115,6 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
         loadProjects();
     }
 
+    if (document.getElementById('skills-container')) {
+        loadSkills();
+    }
     // Animations
     anime({
         targets: '.header-animated-gradient',
@@ -187,6 +190,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+async function loadSkills() {
+    const skillsContainer = document.getElementById('skills-container');
+    if (!skillsContainer) return;
+
+    const response = await fetch('skills.json');
+    const skills = await response.json();
+
+    skillsContainer.innerHTML = '';
+    skills.forEach(skill => {
+        const skillElement = document.createElement('div');
+        skillElement.className = 'card-glow bg-card p-4 rounded-lg flex items-center space-x-4 h-24';
+        skillElement.innerHTML = `
+            <i class="${skill.icon} text-4xl text-accent w-12 text-center"></i>
+            <span class="font-semibold text-white text-lg">${skill.name}</span>
+        `;
+        skillsContainer.appendChild(skillElement);
+    });
+}
 
 async function loadProjects() {
     const projectsContainer = document.getElementById('projects-container');
@@ -294,9 +316,9 @@ async function fetchPosts() {
     }
 }
 
-function parseFrontMatter(content) {
+function parseFrontMatterAndContent(content) {
     const frontMatterMatch = content.match(/---([\s\S]*?)---/);
-    if (!frontMatterMatch) return {};
+    if (!frontMatterMatch) return { frontMatter: {}, content: content };
 
     const frontMatterString = frontMatterMatch[1];
     const lines = frontMatterString.split('\n');
@@ -309,24 +331,10 @@ function parseFrontMatter(content) {
         }
     });
 
-    return frontMatter;
+    const contentAfterFrontMatter = content.substring(frontMatterMatch[0].length).trim();
+    return { frontMatter, content: contentAfterFrontMatter };
 }
-    const frontMatterMatch = content.match(/---([\s\S]*?)---/);
-    if (!frontMatterMatch) return {};
 
-    const frontMatterString = frontMatterMatch[1];
-    const lines = frontMatterString.split('\n');
-    const frontMatter = {};
-
-    lines.forEach(line => {
-        const [key, ...valueParts] = line.split(':');
-        if (key && valueParts.length) {
-            frontMatter[key.trim()] = valueParts.join(':').trim().replace(/"/g, '');
-        }
-    });
-
-    return frontMatter;
-}
 
 function displayPosts(posts) {
     const postsContainer = document.getElementById('posts-container');

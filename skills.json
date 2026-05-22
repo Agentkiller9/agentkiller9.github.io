@@ -1,0 +1,26 @@
+[
+    {
+        "name": "AD Penetration Testing",
+        "icon": "fa-solid fa-users-cog"
+    },
+    {
+        "name": "Web Penetration Testing",
+        "icon": "fa-solid fa-laptop-code"
+    },
+    {
+        "name": "Network Penetration Test",
+        "icon": "fa-solid fa-terminal"
+    },
+    {
+        "name": "System Administration",
+        "icon": "fa-solid fa-server"
+    },
+    {
+        "name": "Log Analysis & Threat Hunting",
+        "icon": "fa-solid fa-bullseye"
+    },
+    {
+        "name": "Technical Support",
+        "icon": "fa-solid fa-headset"
+    }
+]
