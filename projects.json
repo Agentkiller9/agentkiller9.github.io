@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Automated Windows Event Log Analyzer (Chainsaw)",
+        "description": "Developed a Python script to automate `chainsaw.exe`, a powerful tool for rapidly searching and carving Windows Event Logs. This script streamlines threat hunting by identifying suspicious activities and attacker TTPs from massive log files.",
+        "tags": ["Python", "Threat Hunting", "Log Analysis (DFIR)"],
+        "url": "https://github.com/Agentkiller9/Chainsaw-Automator"
+    },
+    {
+        "title": "Rocky Linux OS Hardening & Penetration Testing",
+        "description": "Conducted OS hardening (MFA, firewalld, account policies) on a Rocky Linux 9 VM and validated security by performing comparative penetration tests using Metasploit before and after hardening.",
+        "tags": ["Linux Hardening", "Metasploit", "Firewalld"],
+        "url": "https://github.com/Agentkiller9/Rocky-Linux-Hardening"
+    },
+    {
+        "title": "Web and Email Server Hardening (Apache & Postfix/Dovecot)",
+        "description": "Configured Apache, Postfix, and Dovecot servers, secured communication with SSL/TLS encryption, and tested them for vulnerabilities using offensive tools and packet analysis.",
+        "tags": ["Apache", "Postfix", "SSL/TLS", "Wireshark"],
+        "url": "https://github.com/Agentkiller9/Web-and-Email-Server-Hardening"
+    },
+    {
+        "title": "SIEM Lab (Home SOC) Build",
+        "description": "Built a home SOC lab using the Elastic Stack (Elastic SIEM) to centralize logging, monitor endpoints, and detect simulated attacks in real-time. Practiced Blue Team detection engineering.",
+        "tags": ["Blue Team", "Elastic SIEM", "Detection Engineering"],
+        "tutorialUrl": "https://www.youtube.com/watch?v=2XLzMb9oZBI"
+    },
+    {
+        "title": "Network Traffic Capturing Tool (Python)",
+        "description": "Created a command-line interface (CLI) tool in Python to capture and analyze network packets, demonstrating foundational understanding of network protocols.",
+        "tags": ["Python", "Scapy"],
+        "url": "https://github.com/Agentkiller9/PacketSniffer"
+    },
+    {
+        "title": "Keystroke Tracker (Ethical Keylogger in Python)",
+        "description": "Developed an ethical keylogger in Python to explore malware persistence and data capture techniques, emphasizing defensive programming and security awareness.",
+        "tags": ["Python", "Malware Analysis"],
+        "url": "https://github.com/Agentkiller9/KeystrokeTracker"
+    }
+]

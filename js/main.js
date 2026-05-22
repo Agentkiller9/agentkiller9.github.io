@@ -1,3 +1,86 @@
+let lunrIndex;
+let documents = [];
+
+async function initializeSearch() {
+    const posts = await fetchPostsForSearch();
+    const projects = await fetchProjectsForSearch();
+    documents = [...posts, ...projects];
+
+    lunrIndex = lunr(function () {
+        this.ref('id');
+        this.field('title');
+        this.field('content');
+        this.field('description');
+
+        documents.forEach(function (doc, idx) {
+            doc.id = idx;
+            this.add(doc);
+        }, this);
+    });
+}
+
+async function fetchProjectsForSearch() {
+    const response = await fetch('projects.json');
+    const projects = await response.json();
+    return projects.map(project => ({...project, type: 'project'}));
+}
+
+
+async function fetchPostsForSearch() {
+    const response = await fetch('_posts/');
+    const files = await response.text();
+    const fileNames = files.match(/href="([^"]+\.md)"/g).map(href => href.substring(6, href.length - 1));
+
+    const posts = await Promise.all(fileNames.map(async (file) => {
+        const postResponse = await fetch(`_posts/${file}`);
+        const postContent = await postResponse.text();
+        const { frontMatter, content } = parseFrontMatterAndContent(postContent);
+        return { ...frontMatter, content, url: `post.html?post=${file}` };
+    }));
+
+    return posts;
+}
+
+function search(query) {
+    const results = lunrIndex.search(query);
+    const searchResults = results.map(result => {
+        return documents[result.ref];
+    });
+    displaySearchResults(searchResults);
+}
+
+function displaySearchResults(results) {
+    const postsContainer = document.getElementById('posts-container');
+    postsContainer.innerHTML = '';
+
+    if (results.length === 0) {
+        postsContainer.innerHTML = '<p class="text-gray-400">No results found.</p>';
+        return;
+    }
+
+    results.forEach(result => {
+        const postElement = document.createElement('div');
+        postElement.className = 'bg-card rounded-lg shadow-lg overflow-hidden card-glow';
+        
+        const url = result.type === 'project' ? result.url : `post.html?post=${result.fileName}`;
+        const title = result.title;
+        const excerpt = result.excerpt || result.description;
+
+        postElement.innerHTML = `
+            <div class="p-6">
+                <p class="text-sm text-gray-400">${result.date || ''}</p>
+                <h3 class="text-2xl font-semibold text-white mt-2">${title}</h3>
+                <p class="text-gray-300 mt-2">${excerpt}</p>
+                <a href="${url}" class="text-accent hover:text-white transition duration-300 font-medium mt-4 inline-block">
+                    Read More <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        `;
+        postsContainer.appendChild(postElement);
+    });
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -9,13 +92,143 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (document.getElementById('posts-container')) {
-        fetchPosts();
+        initializeSearch().then(() => {
+            fetchPosts();
+        });
+
+        const searchBar = document.getElementById('search-bar');
+        searchBar.addEventListener('input', (e) => {
+            const query = e.target.value;
+            if (query.length > 2) {
+                search(query);
+            } else {
+                fetchPosts();
+            }
+        });
     }
 
     if (document.getElementById('post-content')) {
         loadPost();
     }
+
+    if (document.getElementById('projects-container')) {
+        loadProjects();
+    }
+
+    // Animations
+    anime({
+        targets: '.header-animated-gradient',
+        opacity: [0, 1],
+        duration: 1000,
+        easing: 'easeInOutQuad'
+    });
+
+    anime({
+        targets: '#typewriter-title, #subtitle, #hero-p, #connect-buttons a',
+        translateY: [50, 0],
+        opacity: [0, 1],
+        duration: 1000,
+        delay: anime.stagger(200, {start: 500}),
+        easing: 'easeOutExpo'
+    });
+
+    document.querySelectorAll('nav a:not(.text-accent)').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            anime({
+                targets: el,
+                color: '#FF0000',
+                duration: 300,
+                easing: 'easeInOutQuad'
+            });
+        });
+        el.addEventListener('mouseleave', () => {
+            anime({
+                targets: el,
+                color: '#FFFFFF',
+                duration: 300,
+                easing: 'easeInOutQuad'
+            });
+        });
+    });
+
+    document.querySelectorAll('.card-glow').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            anime({
+                targets: el,
+                translateY: -5,
+                boxShadow: '0 0 20px rgba(255, 0, 0, 0.4)',
+                duration: 300,
+                easing: 'easeOutExpo'
+            });
+        });
+        el.addEventListener('mouseleave', () => {
+            anime({
+                targets: el,
+                translateY: 0,
+                boxShadow: '0 0 0 rgba(255, 0, 0, 0)',
+                duration: 300,
+                easing: 'easeOutExpo'
+            });
+        });
+    });
+
+    const toTopButton = document.getElementById('to-top-button');
+    if (toTopButton) {
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                toTopButton.classList.remove('hidden');
+            } else {
+                toTopButton.classList.add('hidden');
+            }
+        });
+
+        toTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 });
+
+async function loadProjects() {
+    const projectsContainer = document.getElementById('projects-container');
+    if (!projectsContainer) return;
+
+    const response = await fetch('projects.json');
+    const projects = await response.json();
+
+    projectsContainer.innerHTML = '';
+    projects.forEach(project => {
+        const projectElement = document.createElement('div');
+        projectElement.className = 'bg-card rounded-lg shadow-lg overflow-hidden card-glow';
+        
+        let tagsHtml = '';
+        if (project.tags) {
+            tagsHtml = project.tags.map(tag => `<span class="text-xs text-accent bg-red-900/50 px-2 py-1 rounded-full">${tag}</span>`).join('');
+        }
+
+        let linksHtml = '';
+        if (project.url) {
+            linksHtml += `<a href="${project.url}" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">View Code (GitHub) <i class="fas fa-external-link-alt ml-1"></i></a>`;
+        }
+        if (project.tutorialUrl) {
+            linksHtml += `<a href="${project.tutorialUrl}" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium ml-4">View Tutorial <i class="fas fa-external-link-alt ml-1"></i></a>`;
+        }
+
+        projectElement.innerHTML = `
+            <div class="p-6">
+                <h3 class="text-2xl font-semibold text-white">${project.title}</h3>
+                <p class="text-gray-300 mt-2">${project.description}</p>
+                <div class="flex flex-wrap gap-2 mt-3">
+                    ${tagsHtml}
+                </div>
+                <div class="mt-4">
+                    ${linksHtml}
+                </div>
+            </div>
+        `;
+        projectsContainer.appendChild(projectElement);
+    });
+}
+
 
 function loadPost() {
     const postContentEl = document.getElementById('post-content');
