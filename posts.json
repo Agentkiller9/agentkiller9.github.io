@@ -1,0 +1,65 @@
+[
+  {
+    "title": "KeystrokeTracker: Ethical Keylogging for Cybersecurity Research",
+    "author": "Mujtaba Shaikeldin",
+    "date": "2025-02-28 02:40:11",
+    "categories": "[ethical-hacking, malware-analysis]",
+    "fileName": "2025-02-28-keystroketracker-ethical-keylogging-for-cybersecurity-research.md"
+  },
+  {
+    "title": "Building a Packet Sniffer in Python as a Cybersecurity Student",
+    "author": "Mujtaba Shaikeldin",
+    "date": "2025-04-30 18:28:08",
+    "categories": "[packet-capture, cybersecurity, networking]",
+    "fileName": "2025-04-30-building-a-packet-sniffer-in-python-as-a-cybersecurity-student.md"
+  },
+  {
+    "title": "What Security Auditing Really Is? And Why It’s the Health Check Every IT Environment Needs?",
+    "author": "Mujtaba Shaikeldin",
+    "date": "2025-06-28 10:40:04",
+    "categories": "[security-audit, cybersecurity, purple-team, grc]",
+    "fileName": "2025-06-28-what-security-auditing-really-is-and-why-it-s-the-health-check-every-it-environment-needs-.md"
+  },
+  {
+    "title": "Security Auditing Terms Explained — Like You’re Playing Chess with Hackers",
+    "author": "Mujtaba Shaikeldin",
+    "date": "2025-06-30 23:17:57",
+    "categories": "[security-auditing, cybersecurity, grc]",
+    "fileName": "2025-06-30-security-auditing-terms-explained-like-you-re-playing-chess-with-hackers.md"
+  },
+  {
+    "title": "The Security Auditing Lifecycle — Like a Home Inspection Before You Move In",
+    "author": "Mujtaba Shaikeldin",
+    "date": "2025-07-05 13:29:08",
+    "categories": "[cybersecurity, security-audit]",
+    "fileName": "2025-07-05-the-security-auditing-lifecycle-like-a-home-inspection-before-you-move-in.md"
+  },
+  {
+    "title": "Types of Security Audits — Like Inspecting Different Rooms in a Building",
+    "author": "Mujtaba Shaikeldin",
+    "date": "2025-07-17 03:24:34",
+    "categories": "[security-audit, cybersecurity]",
+    "fileName": "2025-07-17-types-of-security-audits-like-inspecting-different-rooms-in-a-building.md"
+  },
+  {
+    "title": "GRC in Cybersecurity — The “Why” Behind the Controls",
+    "author": "Mujtaba Shaikeldin",
+    "date": "2025-07-21 07:15:48",
+    "categories": "[grc, cybersecurity]",
+    "fileName": "2025-07-21-grc-in-cybersecurity-the-why-behind-the-controls.md"
+  },
+  {
+    "title": "Stop Drowning in EVTX: Automating Windows Log Analysis with Python &amp; Chainsaw",
+    "author": "Mujtaba Shaikeldin",
+    "date": "2025-11-01 10:56:50",
+    "categories": "[]",
+    "fileName": "2025-11-01-stop-drowning-in-evtx-automating-windows-log-analysis-with-python-amp-chainsaw.md"
+  },
+  {
+    "title": "eJPT Host &amp; Network Penetration Testing: System-Host Based Attacks CTF 1",
+    "author": "Mujtaba Shaikeldin",
+    "date": "2025-12-23 23:20:15",
+    "categories": "[cybersecurity, ejptv2, red-team, pentesting]",
+    "fileName": "2025-12-23-ejpt-host-amp-network-penetration-testing-system-host-based-attacks-ctf-1.md"
+  }
+]

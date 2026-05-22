@@ -27,18 +27,17 @@ async function fetchProjectsForSearch() {
 
 
 async function fetchPostsForSearch() {
-    const response = await fetch('_posts/');
-    const files = await response.text();
-    const fileNames = files.match(/href="([^"]+\.md)"/g).map(href => href.substring(6, href.length - 1));
+    const response = await fetch('posts.json');
+    const posts = await response.json();
 
-    const posts = await Promise.all(fileNames.map(async (file) => {
-        const postResponse = await fetch(`_posts/${file}`);
+    const postsWithContent = await Promise.all(posts.map(async (post) => {
+        const postResponse = await fetch(`_posts/${post.fileName}`);
         const postContent = await postResponse.text();
-        const { frontMatter, content } = parseFrontMatterAndContent(postContent);
-        return { ...frontMatter, content, url: `post.html?post=${file}` };
+        const { content } = parseFrontMatterAndContent(postContent);
+        return { ...post, content, url: `post.html?post=${post.fileName}` };
     }));
 
-    return posts;
+    return postsWithContent;
 }
 
 function search(query) {
@@ -297,16 +296,8 @@ function loadPost() {
 
 async function fetchPosts() {
     try {
-        const response = await fetch('_posts/');
-        const files = await response.text();
-        const fileNames = files.match(/href="([^"]+\.md)"/g).map(href => href.substring(6, href.length - 1));
-
-        const posts = await Promise.all(fileNames.map(async (file) => {
-            const postResponse = await fetch(`_posts/${file}`);
-            const postContent = await postResponse.text();
-            const frontMatter = parseFrontMatter(postContent);
-            return { ...frontMatter, fileName: file };
-        }));
+        const response = await fetch('posts.json');
+        const posts = await response.json();
 
         displayPosts(posts);
         populateCategories(posts);
@@ -448,19 +439,11 @@ async function loadBlogPreview() {
     if (!blogContainer) return;
 
     try {
-        const response = await fetch('_posts/');
-        const files = await response.text();
-        const fileNames = files.match(/href="([^"]+\.md)"/g).map(href => href.substring(6, href.length - 1));
-
-        const posts = await Promise.all(fileNames.slice(0, 3).map(async (file) => {
-            const postResponse = await fetch(`_posts/${file}`);
-            const postContent = await postResponse.text();
-            const frontMatter = parseFrontMatter(postContent);
-            return { ...frontMatter, fileName: file };
-        }));
+        const response = await fetch('posts.json');
+        const posts = await response.json();
 
         blogContainer.innerHTML = '';
-        posts.forEach(post => {
+        posts.slice(0, 3).forEach(post => {
             const postElement = document.createElement('div');
             postElement.className = 'bg-card rounded-lg shadow-lg overflow-hidden card-glow';
             postElement.innerHTML = `
