@@ -1,11 +1,121 @@
-        /* Base Styles for Futuristic Theme */
-        body { 
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-            font-size: 16px; 
-            background-color: #0D1117;
-            background-image: radial-gradient(ellipse at top, #1a202c 0%, #0D1117 70%);
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap');
+
+/* Base Styles for Darth Vader Theme */
+body { 
+    font-family: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-size: 16px; 
+    background-color: #000000; /* Black background */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Interactive Particle Background Container */
+#tsparticles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place it behind all content */
+}
+
+/* Red Accent Color */
+.text-accent { color: #FF0000; } /* Bright Red */
+
+/* Polished Card: Darker with a subtle border */
+.bg-card { 
+    background-color: rgba(10, 10, 10, 0.7); /* Darker card */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 0, 0, 0.3); /* Red border */
+}
+
+/* Softer, more professional glow effect */
+.card-glow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-glow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); /* Red glow */
+}
+
+/* Typing effect cursor */
+.typing-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 2.5rem;
+    background-color: #FF0000; /* Red cursor */
+    animation: blink 1s infinite;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Scroll-in Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Final Badge Fix */
+.thm-badge-iframe {
+    display: block;
+    width: 100%;
+    height: 120px;
+    min-height: 120px;
+}
+
+/* Animated Gradient Header */
+.header-animated-gradient {
+    background: linear-gradient(-45deg, #000000, #1a0000, #000000, #2b0000); /* Dark red gradient */
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Hollow Button Style */
+.btn-hollow {
+    background-color: transparent;
+    border: 2px solid #FF0000; /* Red border */
+    color: #FF0000; /* Red text */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.btn-hollow:hover {
+    background-color: #FF0000; /* Red background on hover */
+    color: #000000; /* Black text on hover */
+}
+.btn-hollow:disabled {
+    border-color: #555;
+    color: #555;
+    cursor: not-allowed;
+}
+
+/* Loader */
+.loader {
+    width: 24px;
+    height: 24px;
+    border: 3px solid #FF0000; /* Red border */
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+@keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
         
         /* Interactive Particle Background Container */
         #tsparticles {
