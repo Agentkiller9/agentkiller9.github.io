@@ -76,6 +76,25 @@ body {
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
 }
+
+/* Blog content formatting */
+.prose {
+    text-align: justify;
+    text-justify: inter-word;
+}
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6,
+.prose blockquote,
+.prose figure,
+.prose img,
+.prose pre,
+.prose code {
+    text-align: left;
+}
 @keyframes gradientBG {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
