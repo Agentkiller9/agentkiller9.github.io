@@ -435,7 +435,7 @@ async function loadProjectsPreview() {
         projectElement.innerHTML = `
             <div class="p-6">
                 <h3 class="text-xl font-semibold text-white">${project.title}</h3>
-                <p class="text-gray-300 mt-2 h-24 overflow-hidden">${project.description}</p>
+                <p class="text-gray-300 mt-2">${project.description}</p>
                 <div class="flex flex-wrap gap-2 mt-3">
                     ${tagsHtml}
                 </div>
@@ -464,7 +464,7 @@ async function loadBlogPreview() {
                 <div class="p-6">
                     <p class="text-sm text-gray-400">${post.date}</p>
                     <h3 class="text-xl font-semibold text-white mt-2">${post.title}</h3>
-                    <p class="text-gray-300 mt-2 h-24 overflow-hidden">${post.excerpt}</p>
+                    <p class="text-gray-300 mt-2">${post.excerpt}</p>
                     <a href="post.html?post=${post.fileName}" class="text-accent hover:text-white transition duration-300 font-medium mt-4 inline-block">
                         Read More <i class="fas fa-arrow-right ml-1"></i>
                     </a>
