@@ -29,15 +29,7 @@ async function fetchProjectsForSearch() {
 async function fetchPostsForSearch() {
     const response = await fetch('posts.json');
     const posts = await response.json();
-
-    const postsWithContent = await Promise.all(posts.map(async (post) => {
-        const postResponse = await fetch(`_posts/${post.fileName}`);
-        const postContent = await postResponse.text();
-        const { content } = parseFrontMatterAndContent(postContent);
-        return { ...post, content, url: `post.html?post=${post.fileName}` };
-    }));
-
-    return postsWithContent;
+    return posts.map(post => ({...post, type: 'post'}));
 }
 
 function search(query) {
@@ -96,14 +88,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const searchBar = document.getElementById('search-bar');
-        searchBar.addEventListener('input', (e) => {
-            const query = e.target.value;
-            if (query.length > 2) {
-                search(query);
-            } else {
-                fetchPosts();
-            }
-        });
+        if (searchBar) {
+            searchBar.addEventListener('input', (e) => {
+                const query = e.target.value;
+                if (query.length > 2) {
+                    search(query);
+                } else {
+                    fetchPosts();
+                }
+            });
+        }
     }
 
     if (document.getElementById('post-content')) {
@@ -269,27 +263,39 @@ function loadPost() {
         return;
     }
 
-    fetch(`_posts/${postFile}`)
-        .then(response => response.text())
-        .then(text => {
-            const frontMatter = parseFrontMatter(text);
-            const content = text.split('---').slice(2).join('---').trim();
-            const converter = new showdown.Converter();
-            const htmlContent = converter.makeHtml(content);
+    fetch('posts.json')
+        .then(response => response.json())
+        .then(posts => {
+            const post = posts.find(p => p.fileName === postFile);
+            if (post) {
+                fetch(`_posts/${post.fileName}`)
+                    .then(response => response.text())
+                    .then(text => {
+                        const { frontMatter, content } = parseFrontMatterAndContent(text);
+                        const converter = new showdown.Converter();
+                        const htmlContent = converter.makeHtml(content);
 
-            document.title = `${frontMatter.title} | Mugtaba Shaikeldin`;
+                        document.title = `${frontMatter.title} | Mugtaba Shaikeldin`;
 
-            postContentEl.innerHTML = `
-                <h1 class="text-4xl font-extrabold text-white">${frontMatter.title}</h1>
-                <p class="text-gray-400 mt-2">By ${frontMatter.author} on ${frontMatter.date}</p>
-                <div class="prose prose-invert lg:prose-xl max-w-none mt-8">
-                    ${htmlContent}
-                </div>
-            `;
+                        postContentEl.innerHTML = `
+                            <h1 class="text-4xl font-extrabold text-white">${frontMatter.title}</h1>
+                            <p class="text-gray-400 mt-2">By ${frontMatter.author} on ${frontMatter.date}</p>
+                            <div class="prose prose-invert lg:prose-xl max-w-none mt-8">
+                                ${htmlContent}
+                            </div>
+                        `;
+                    })
+                    .catch(error => {
+                        console.error('Error loading post content:', error);
+                        postContentEl.innerHTML = '<p class="text-red-500">Could not load post content.</p>';
+                    });
+            } else {
+                postContentEl.innerHTML = '<p class="text-red-500">Post not found.</p>';
+            }
         })
         .catch(error => {
-            console.error('Error loading post:', error);
-            postContentEl.innerHTML = '<p class="text-red-500">Could not load post.</p>';
+            console.error('Error loading posts index:', error);
+            postContentEl.innerHTML = '<p class="text-red-500">Could not load posts index.</p>';
         });
 }
 
@@ -305,8 +311,12 @@ async function fetchPosts() {
         const searchBar = document.getElementById('search-bar');
         const categoryFilter = document.getElementById('category-filter');
 
-        searchBar.addEventListener('input', () => filterPosts(posts));
-        categoryFilter.addEventListener('change', () => filterPosts(posts));
+        if (searchBar) {
+            searchBar.addEventListener('input', () => filterPosts(posts));
+        }
+        if (categoryFilter) {
+            categoryFilter.addEventListener('change', () => filterPosts(posts));
+        }
 
     } catch (error) {
         console.error("Error fetching posts: ", error);
