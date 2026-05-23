@@ -272,8 +272,7 @@ function loadPost() {
                     .then(response => response.text())
                     .then(text => {
                         const { frontMatter, content } = parseFrontMatterAndContent(text);
-                        const converter = new showdown.Converter();
-                        const htmlContent = converter.makeHtml(content);
+                        const htmlContent = marked.parse(content);
 
                         document.title = `${frontMatter.title} | Mugtaba Shaikeldin`;
 
