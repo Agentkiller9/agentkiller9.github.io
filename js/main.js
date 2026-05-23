@@ -344,6 +344,10 @@ function parseFrontMatterAndContent(content) {
     return { frontMatter, content: contentAfterFrontMatter };
 }
 
+function parseFrontMatter(content) {
+    return parseFrontMatterAndContent(content).frontMatter;
+}
+
 
 function displayPosts(posts) {
     const postsContainer = document.getElementById('posts-container');
