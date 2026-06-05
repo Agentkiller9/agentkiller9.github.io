@@ -76,7 +76,7 @@
         <span class="status-dot" aria-hidden="true"></span>
         <span class="text-white"><strong>Available from Aug 2026</strong></span>
         <span class="text-gray-500 mx-2" aria-hidden="true">·</span>
-        <span class="text-gray-300">Open to graduate roles in <span class="text-accent font-mono">Penetration Testing</span> · <span class="text-accent font-mono">DFIR</span> · <span class="text-accent font-mono">Red Team</span></span>
+        <span class="text-gray-300">Open to graduate roles in <span class="text-accent font-mono">Penetration Testing</span> · <span class="text-accent font-mono">DFIR</span> · <span class="text-accent font-mono">SOC</span> · <span class="text-accent font-mono">Red Team</span></span>
     </div>
 
     <!-- Navigation Bar -->
@@ -137,37 +137,13 @@
                     <i class="fas fa-paper-plane text-lg" aria-hidden="true"></i>
                     <span>Contact</span>
                 </a>
-                <button type="button" id="download-cv" class="card-glow flex items-center space-x-2 px-6 py-3 bg-accent rounded-full text-black font-semibold hover:opacity-90 transition shadow-lg" aria-label="Download CV as PDF (opens print dialog)">
+                <button type="button" id="download-cv" class="btn-solid card-glow flex items-center space-x-2 px-6 py-3 rounded-full font-semibold transition shadow-lg" aria-label="Download CV as PDF (opens print dialog)">
                     <i class="fas fa-file-arrow-down text-lg" aria-hidden="true"></i>
                     <span>Download CV</span>
                 </button>
             </div>
         </div>
     </header>
-
-    <!-- Quantified impact strip -->
-    <section class="stats-strip border-b border-gray-800/60" aria-label="Quantified impact">
-        <div class="container mx-auto px-4 sm:px-8 py-10">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                <div class="stat">
-                    <div class="stat-value">31</div>
-                    <div class="stat-label">AD lab scenarios <span class="stat-sublabel">(AD-Playground)</span></div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">11</div>
-                    <div class="stat-label">investigation tabs <span class="stat-sublabel">(Jinsoku)</span></div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">125</div>
-                    <div class="stat-label">CI tests <span class="stat-sublabel">(Jinsoku · pytest)</span></div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">100<span class="stat-plus">+</span></div>
-                    <div class="stat-label">workstations supported <span class="stat-sublabel">(APU TA)</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <main class="container mx-auto px-4 sm:px-8 py-16 z-10 relative">
 
@@ -533,33 +509,6 @@
             const cvBtn = document.getElementById('download-cv');
             if (cvBtn) {
                 cvBtn.addEventListener('click', () => window.print());
-            }
-
-            // Animate stats numbers on first reveal
-            const stats = document.querySelectorAll('.stat-value');
-            if (stats.length && !reduceMotion) {
-                const statsObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (!entry.isIntersecting || entry.target.dataset.animated) return;
-                        entry.target.dataset.animated = 'true';
-                        const target = entry.target;
-                        const finalText = target.textContent.trim();
-                        const match = finalText.match(/^(\d+)/);
-                        if (!match) return;
-                        const finalNum = parseInt(match[1], 10);
-                        const suffix = finalText.replace(/^\d+/, '');
-                        let current = 0;
-                        const stepTime = 30;
-                        const steps = 24;
-                        const inc = Math.max(1, Math.round(finalNum / steps));
-                        const tick = setInterval(() => {
-                            current = Math.min(finalNum, current + inc);
-                            target.innerHTML = current + (current === finalNum ? suffix : '');
-                            if (current >= finalNum) clearInterval(tick);
-                        }, stepTime);
-                    });
-                }, { threshold: 0.4 });
-                stats.forEach(s => statsObserver.observe(s));
             }
         });
     </script>
