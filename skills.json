@@ -1,26 +1,62 @@
 [
     {
-        "name": "AD Penetration Testing",
-        "icon": "fa-solid fa-users-cog"
+        "category": "Offensive Security",
+        "icon": "fa-solid fa-user-secret",
+        "skills": [
+            "Nmap",
+            "Metasploit",
+            "Burp Suite",
+            "SQLMap",
+            "Impacket",
+            "Netexec",
+            "BloodHound",
+            "Responder",
+            "Rubeus",
+            "Kerbrute",
+            "AD Attack Techniques",
+            "Web App Pentesting"
+        ]
     },
     {
-        "name": "Web Penetration Testing",
-        "icon": "fa-solid fa-laptop-code"
+        "category": "DFIR & Threat Hunting",
+        "icon": "fa-solid fa-magnifying-glass-chart",
+        "skills": [
+            "Hayabusa",
+            "Takajo",
+            "Chainsaw",
+            "Windows Event Log Forensics",
+            "MITRE ATT&CK",
+            "IOC Enrichment",
+            "Sysmon",
+            "Nessus",
+            "OpenVAS"
+        ]
     },
     {
-        "name": "Network Penetration Test",
-        "icon": "fa-solid fa-terminal"
+        "category": "Infrastructure & Cloud",
+        "icon": "fa-solid fa-server",
+        "skills": [
+            "Linux (Kali / Rocky / Ubuntu)",
+            "Windows Server & Active Directory",
+            "AWS",
+            "Azure",
+            "GCP",
+            "Docker",
+            "Git / GitHub Actions",
+            "Tailscale",
+            "PostgreSQL"
+        ]
     },
     {
-        "name": "System Administration",
-        "icon": "fa-solid fa-server"
-    },
-    {
-        "name": "Log Analysis & Threat Hunting",
-        "icon": "fa-solid fa-bullseye"
-    },
-    {
-        "name": "Technical Support",
-        "icon": "fa-solid fa-headset"
+        "category": "Development",
+        "icon": "fa-solid fa-code",
+        "skills": [
+            "Python",
+            "PowerShell",
+            "TypeScript / React",
+            "Bash",
+            "FastAPI",
+            "Tailwind CSS"
+        ]
     }
 ]

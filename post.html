@@ -4,19 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Post | Mugtaba Shaikeldin</title>
+
+    <meta name="description" content="A blog post by Mugtaba Shaikeldin on cybersecurity, pentesting and DFIR.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Blog Post | Mugtaba Shaikeldin">
+    <meta name="theme-color" content="#050507">
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body class="text-gray-100 text-base min-h-screen">
 
-    <!-- Navigation Bar -->
-    <nav class="bg-card bg-opacity-80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-700/50">
+    <nav class="bg-card bg-opacity-80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-700/50" aria-label="Primary">
         <div class="container mx-auto px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <a class="text-accent font-bold text-xl" href="index.html">Mugtaba Shaikeldin</a>
+                    <a class="text-accent font-bold text-xl font-mono" href="index.html">~/mugtaba</a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="text-white hover:text-accent transition">Portfolio</a>
@@ -25,13 +33,12 @@
                     <a href="contact.html" class="text-white hover:text-accent transition">Contact</a>
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-white hover:text-accent focus:outline-none">
-                        <i class="fas fa-bars text-xl"></i>
+                    <button id="mobile-menu-button" class="text-white hover:text-accent focus:outline-none" aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden">
             <a href="index.html" class="block py-2 px-8 text-sm text-white hover:bg-gray-700">Portfolio</a>
             <a href="projects.html" class="block py-2 px-8 text-sm text-white hover:bg-gray-700">Projects</a>
@@ -40,21 +47,25 @@
         </div>
     </nav>
 
-    <main class="container mx-auto px-8 py-16">
-        <div id="post-content" class="bg-card p-8 rounded-lg shadow-lg">
-            <!-- Post content will be loaded here -->
+    <main class="container mx-auto px-4 sm:px-8 py-16">
+        <div class="max-w-3xl mx-auto">
+            <a href="blog.html" class="inline-flex items-center text-accent hover:text-white transition mb-6 font-mono text-sm">
+                <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i> Back to blog
+            </a>
+            <article id="post-content" class="bg-card p-6 sm:p-8 rounded-lg shadow-lg">
+                <!-- Post content loaded by JS -->
+            </article>
         </div>
     </main>
 
     <footer class="text-center py-8 border-t border-gray-800/50">
-        <p class="text-gray-500 text-sm">&copy; 2026 Mugtaba Shaikeldin. All Rights Reserved.</p>
+        <p class="text-gray-500 text-sm">&copy; 2026 Mugtaba Shaikeldin · All Rights Reserved.</p>
     </footer>
 
-    <button id="to-top-button" title="Go To Top"
+    <button id="to-top-button" title="Back to top" aria-label="Back to top"
         class="hidden fixed bottom-8 right-8 w-12 h-12 rounded-full bg-accent text-white justify-center items-center cursor-pointer text-2xl z-50">
-        <i class="fas fa-arrow-up"></i>
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="js/main.js"></script>

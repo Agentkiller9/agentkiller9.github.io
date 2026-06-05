@@ -197,18 +197,68 @@ async function loadSkills() {
     if (!skillsContainer) return;
 
     const response = await fetch('skills.json');
-    const skills = await response.json();
+    const categories = await response.json();
 
     skillsContainer.innerHTML = '';
-    skills.forEach(skill => {
-        const skillElement = document.createElement('div');
-        skillElement.className = 'card-glow bg-card p-4 rounded-lg flex items-center space-x-4 h-24';
-        skillElement.innerHTML = `
-            <i class="${skill.icon} text-4xl text-accent w-12 text-center"></i>
-            <span class="font-semibold text-white text-lg">${skill.name}</span>
+    categories.forEach(cat => {
+        const card = document.createElement('div');
+        card.className = 'card-glow bg-card p-6 rounded-lg flex flex-col';
+
+        const badgesHtml = (cat.skills || [])
+            .map(s => `<span class="skill-badge">${s}</span>`)
+            .join('');
+
+        card.innerHTML = `
+            <div class="flex items-center space-x-3 mb-4">
+                <i class="${cat.icon} text-2xl text-accent"></i>
+                <h3 class="text-xl font-semibold text-white">${cat.category}</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                ${badgesHtml}
+            </div>
         `;
-        skillsContainer.appendChild(skillElement);
+        skillsContainer.appendChild(card);
     });
+}
+
+function renderProjectCard(project, titleClass = 'text-2xl') {
+    const tagsHtml = (project.tags || [])
+        .map(tag => `<span class="project-tag">${tag}</span>`)
+        .join('');
+
+    let linksHtml = '';
+    if (project.url) {
+        linksHtml += `<a href="${project.url}" target="_blank" rel="noopener" class="text-accent hover:text-white transition duration-300 font-medium"><i class="fab fa-github mr-1"></i>View on GitHub <i class="fas fa-arrow-up-right-from-square ml-1 text-xs"></i></a>`;
+    }
+    if (project.tutorialUrl) {
+        linksHtml += `<a href="${project.tutorialUrl}" target="_blank" rel="noopener" class="text-accent hover:text-white transition duration-300 font-medium ml-4"><i class="fas fa-play mr-1"></i>Tutorial <i class="fas fa-arrow-up-right-from-square ml-1 text-xs"></i></a>`;
+    }
+
+    const featuredBadge = project.featured
+        ? '<span class="featured-badge"><i class="fas fa-star mr-1"></i>Featured</span>'
+        : '';
+    const statusBadge = project.status
+        ? `<span class="status-badge">${project.status}</span>`
+        : '';
+
+    const card = document.createElement('div');
+    card.className = 'project-card bg-card rounded-lg shadow-lg overflow-hidden card-glow flex flex-col';
+    card.innerHTML = `
+        <div class="p-6 flex flex-col h-full">
+            <div class="flex flex-wrap gap-2 mb-3">
+                ${featuredBadge}${statusBadge}
+            </div>
+            <h3 class="${titleClass} font-semibold text-white">${project.title}</h3>
+            <p class="text-gray-300 mt-2 flex-grow">${project.description}</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+                ${tagsHtml}
+            </div>
+            <div class="mt-5">
+                ${linksHtml}
+            </div>
+        </div>
+    `;
+    return card;
 }
 
 async function loadProjects() {
@@ -220,35 +270,7 @@ async function loadProjects() {
 
     projectsContainer.innerHTML = '';
     projects.forEach(project => {
-        const projectElement = document.createElement('div');
-        projectElement.className = 'bg-card rounded-lg shadow-lg overflow-hidden card-glow';
-        
-        let tagsHtml = '';
-        if (project.tags) {
-            tagsHtml = project.tags.map(tag => `<span class="text-xs text-accent bg-red-900/50 px-2 py-1 rounded-full">${tag}</span>`).join('');
-        }
-
-        let linksHtml = '';
-        if (project.url) {
-            linksHtml += `<a href="${project.url}" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">View Code (GitHub) <i class="fas fa-external-link-alt ml-1"></i></a>`;
-        }
-        if (project.tutorialUrl) {
-            linksHtml += `<a href="${project.tutorialUrl}" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium ml-4">View Tutorial <i class="fas fa-external-link-alt ml-1"></i></a>`;
-        }
-
-        projectElement.innerHTML = `
-            <div class="p-6">
-                <h3 class="text-2xl font-semibold text-white">${project.title}</h3>
-                <p class="text-gray-300 mt-2">${project.description}</p>
-                <div class="flex flex-wrap gap-2 mt-3">
-                    ${tagsHtml}
-                </div>
-                <div class="mt-4">
-                    ${linksHtml}
-                </div>
-            </div>
-        `;
-        projectsContainer.appendChild(projectElement);
+        projectsContainer.appendChild(renderProjectCard(project, 'text-2xl'));
     });
 }
 
@@ -303,6 +325,7 @@ async function fetchPosts() {
     try {
         const response = await fetch('posts.json');
         const posts = await response.json();
+        posts.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 
         displayPosts(posts);
         populateCategories(posts);
@@ -360,11 +383,17 @@ function displayPosts(posts) {
     posts.forEach(post => {
         const postElement = document.createElement('div');
         postElement.className = 'bg-card rounded-lg shadow-lg overflow-hidden card-glow';
+        const excerpt = post.excerpt || '';
+        const categories = post.categories
+            ? post.categories.replace(/[\[\]]/g, '').split(',').map(c => c.trim()).filter(Boolean)
+            : [];
+        const tagsHtml = categories.map(c => `<span class="project-tag">${c}</span>`).join('');
         postElement.innerHTML = `
             <div class="p-6">
-                <p class="text-sm text-gray-400">${post.date}</p>
+                <p class="text-sm text-gray-400 font-mono">${post.date || ''}</p>
                 <h3 class="text-2xl font-semibold text-white mt-2">${post.title}</h3>
-                <p class="text-gray-300 mt-2">${post.excerpt}</p>
+                ${excerpt ? `<p class="text-gray-300 mt-2">${excerpt}</p>` : ''}
+                ${tagsHtml ? `<div class="flex flex-wrap gap-2 mt-3">${tagsHtml}</div>` : ''}
                 <a href="post.html?post=${post.fileName}" class="text-accent hover:text-white transition duration-300 font-medium mt-4 inline-block">
                     Read More <i class="fas fa-arrow-right ml-1"></i>
                 </a>
@@ -394,12 +423,15 @@ function populateCategories(posts) {
 function filterPosts(posts) {
     const searchBar = document.getElementById('search-bar');
     const categoryFilter = document.getElementById('category-filter');
-    const searchTerm = searchBar.value.toLowerCase();
-    const selectedCategory = categoryFilter.value;
+    const searchTerm = (searchBar?.value || '').toLowerCase();
+    const selectedCategory = categoryFilter?.value || 'all';
 
     const filteredPosts = posts.filter(post => {
-        const matchesSearch = post.title.toLowerCase().includes(searchTerm) || post.excerpt.toLowerCase().includes(searchTerm);
-        const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
+        const title = (post.title || '').toLowerCase();
+        const excerpt = (post.excerpt || '').toLowerCase();
+        const categories = (post.categories || '').toLowerCase();
+        const matchesSearch = title.includes(searchTerm) || excerpt.includes(searchTerm) || categories.includes(searchTerm);
+        const matchesCategory = selectedCategory === 'all' || (post.category === selectedCategory);
         return matchesSearch && matchesCategory;
     });
 
@@ -413,57 +445,35 @@ async function loadProjectsPreview() {
     const response = await fetch('projects.json');
     const projects = await response.json();
 
+    const featured = projects.filter(p => p.featured);
+    const previewSet = (featured.length >= 3 ? featured : projects).slice(0, 3);
+
     projectsContainer.innerHTML = '';
-    projects.slice(0, 3).forEach(project => {
-        const projectElement = document.createElement('div');
-        projectElement.className = 'bg-card rounded-lg shadow-lg overflow-hidden card-glow';
-        
-        let tagsHtml = '';
-        if (project.tags) {
-            tagsHtml = project.tags.map(tag => `<span class="text-xs text-accent bg-red-900/50 px-2 py-1 rounded-full">${tag}</span>`).join('');
-        }
-
-        let linksHtml = '';
-        if (project.url) {
-            linksHtml += `<a href="${project.url}" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium">View Code (GitHub) <i class="fas fa-external-link-alt ml-1"></i></a>`;
-        }
-        if (project.tutorialUrl) {
-            linksHtml += `<a href="${project.tutorialUrl}" target="_blank" class="text-accent hover:text-white transition duration-300 font-medium ml-4">View Tutorial <i class="fas fa-external-link-alt ml-1"></i></a>`;
-        }
-
-        projectElement.innerHTML = `
-            <div class="p-6">
-                <h3 class="text-xl font-semibold text-white">${project.title}</h3>
-                <p class="text-gray-300 mt-2">${project.description}</p>
-                <div class="flex flex-wrap gap-2 mt-3">
-                    ${tagsHtml}
-                </div>
-                <div class="mt-4">
-                    ${linksHtml}
-                </div>
-            </div>
-        `;
-        projectsContainer.appendChild(projectElement);
+    previewSet.forEach(project => {
+        projectsContainer.appendChild(renderProjectCard(project, 'text-xl'));
     });
 }
 
 async function loadBlogPreview() {
     const blogContainer = document.getElementById('blog-preview-container');
     if (!blogContainer) return;
+    /* renders 3 most recent posts; gracefully handles missing excerpt */
 
     try {
         const response = await fetch('posts.json');
         const posts = await response.json();
 
         blogContainer.innerHTML = '';
-        posts.slice(0, 3).forEach(post => {
+        const recent = [...posts].sort((a, b) => (b.date || '').localeCompare(a.date || '')).slice(0, 3);
+        recent.forEach(post => {
             const postElement = document.createElement('div');
             postElement.className = 'bg-card rounded-lg shadow-lg overflow-hidden card-glow';
+            const excerpt = post.excerpt || '';
             postElement.innerHTML = `
                 <div class="p-6">
-                    <p class="text-sm text-gray-400">${post.date}</p>
+                    <p class="text-sm text-gray-400 font-mono">${post.date || ''}</p>
                     <h3 class="text-xl font-semibold text-white mt-2">${post.title}</h3>
-                    <p class="text-gray-300 mt-2">${post.excerpt}</p>
+                    ${excerpt ? `<p class="text-gray-300 mt-2">${excerpt}</p>` : ''}
                     <a href="post.html?post=${post.fileName}" class="text-accent hover:text-white transition duration-300 font-medium mt-4 inline-block">
                         Read More <i class="fas fa-arrow-right ml-1"></i>
                     </a>

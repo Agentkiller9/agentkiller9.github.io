@@ -1,57 +1,141 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
-/* Base Styles for Darth Vader Theme */
-body { 
-    font-family: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-    font-size: 16px; 
-    background-color: #000000; /* Black background */
-    overflow-x: hidden; /* Prevent horizontal scroll */
+/* ============================================================
+   ROOT TOKENS
+   ============================================================ */
+:root {
+    --accent: #ff2a2a;
+    --accent-bright: #ff4444;
+    --accent-soft: rgba(255, 42, 42, 0.15);
+    --bg: #050507;
+    --bg-card: rgba(15, 15, 18, 0.78);
+    --border: rgba(255, 42, 42, 0.25);
+    --border-strong: rgba(255, 42, 42, 0.5);
+    --text-muted: #9ca3af;
+    --mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-/* Interactive Particle Background Container */
+/* ============================================================
+   BASE
+   ============================================================ */
+body {
+    font-family: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    background-color: var(--bg);
+    overflow-x: hidden;
+    color: #e5e7eb;
+}
+
+/* Subtle scanline overlay across the whole viewport for terminal vibe */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.0) 0px,
+        rgba(255, 255, 255, 0.0) 2px,
+        rgba(255, 255, 255, 0.012) 3px,
+        rgba(255, 255, 255, 0.0) 4px
+    );
+    mix-blend-mode: overlay;
+}
+
+/* Selection */
+::selection {
+    background: var(--accent);
+    color: #000;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-bright); }
+
+/* Mono font helper */
+.font-mono { font-family: var(--mono); }
+
+/* ============================================================
+   BACKGROUND
+   ============================================================ */
 #tsparticles {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Place it behind all content */
+    z-index: -1;
 }
 
-/* Red Accent Color */
-.text-accent { color: #FF0000; } /* Bright Red */
-
-/* Polished Card: Darker with a subtle border */
-.bg-card { 
-    background-color: rgba(10, 10, 10, 0.7); /* Darker card */
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 0, 0, 0.3); /* Red border */
+/* Animated gradient hero */
+.header-animated-gradient {
+    background:
+        radial-gradient(ellipse at top, rgba(255, 42, 42, 0.18), transparent 60%),
+        linear-gradient(-45deg, #050507, #1a0000, #050507, #2b0000);
+    background-size: 100% 100%, 400% 400%;
+    animation: gradientBG 18s ease infinite;
+    position: relative;
+}
+@keyframes gradientBG {
+    0% { background-position: center, 0% 50%; }
+    50% { background-position: center, 100% 50%; }
+    100% { background-position: center, 0% 50%; }
 }
 
-/* Softer, more professional glow effect */
+/* ============================================================
+   ACCENT / CARDS
+   ============================================================ */
+.text-accent { color: var(--accent); }
+
+.bg-card {
+    background-color: var(--bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+}
+
 .card-glow {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .card-glow:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    border-color: var(--border-strong);
+    box-shadow: 0 8px 30px rgba(255, 42, 42, 0.18);
 }
 
-/* Typing effect cursor */
+/* ============================================================
+   TERMINAL HERO BIT (Mono prompt over the name)
+   ============================================================ */
+.terminal-prompt {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    opacity: 0.85;
+}
+.terminal-prompt::before { content: '>'; margin-right: 0.5rem; color: var(--accent-bright); }
+
 .typing-cursor {
     display: inline-block;
     width: 10px;
     height: 2.5rem;
-    background-color: #FF0000; /* Red cursor */
+    background-color: var(--accent);
     animation: blink 1s infinite;
     margin-left: 8px;
     vertical-align: middle;
+    box-shadow: 0 0 8px rgba(255, 42, 42, 0.6);
 }
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
 }
 
-/* Scroll-in Animation */
+/* ============================================================
+   REVEAL ANIMATION
+   ============================================================ */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -62,7 +146,161 @@ body {
     transform: translateY(0);
 }
 
-/* Final Badge Fix */
+/* Reduced motion: disable transforms / animations */
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .card-glow,
+    .header-animated-gradient,
+    .typing-cursor,
+    .timeline-dot,
+    body::before {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+    .reveal { opacity: 1; }
+}
+
+/* ============================================================
+   SKILL BADGES
+   ============================================================ */
+.skill-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.7rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    line-height: 1;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.skill-badge:hover {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+}
+
+/* ============================================================
+   PROJECT CARD ACCENTS
+   ============================================================ */
+.project-tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+}
+.featured-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #000;
+    background: var(--accent);
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    border-radius: 3px;
+    letter-spacing: 0.03em;
+}
+
+/* ============================================================
+   TIMELINE (Experience)
+   ============================================================ */
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), rgba(255, 42, 42, 0.2));
+}
+.timeline-item {
+    position: relative;
+    padding-bottom: 1.75rem;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-dot {
+    position: absolute;
+    left: -1.625rem;
+    top: 0.45rem;
+    width: 14px;
+    height: 14px;
+    background: var(--accent);
+    border: 3px solid var(--bg);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--accent);
+    animation: pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 2px var(--accent), 0 0 0 0 rgba(255, 42, 42, 0.4); }
+    50% { box-shadow: 0 0 0 2px var(--accent), 0 0 0 8px rgba(255, 42, 42, 0); }
+}
+
+/* ============================================================
+   CERTIFICATIONS
+   ============================================================ */
+.cert-card {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cert-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(255, 42, 42, 0.2);
+}
+.cert-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.15rem 0.55rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.5rem;
+}
+.cert-status.active {
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.4);
+}
+.cert-status.in-progress {
+    color: #facc15;
+    background: rgba(250, 204, 21, 0.1);
+    border: 1px solid rgba(250, 204, 21, 0.4);
+}
+
+/* ============================================================
+   IFRAME (THM badge)
+   ============================================================ */
 .thm-badge-iframe {
     display: block;
     width: 100%;
@@ -70,32 +308,17 @@ body {
     min-height: 120px;
 }
 
-/* Animated Gradient Header */
-.header-animated-gradient {
-    background: linear-gradient(-45deg, #000000, #1a0000, #000000, #2b0000); /* Dark red gradient */
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-}
-
-/* Blog content formatting */
+/* ============================================================
+   PROSE (blog posts)
+   ============================================================ */
 .prose {
     text-align: left;
     line-height: 1.8;
 }
-.prose p {
-    margin-bottom: 1rem;
-}
-.prose ul,
-.prose ol {
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
-}
-.prose li {
-    margin-bottom: 0.5rem;
-}
-.prose figure {
-    margin: 1.5rem 0;
-}
+.prose p { margin-bottom: 1rem; }
+.prose ul, .prose ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+.prose li { margin-bottom: 0.5rem; }
+.prose figure { margin: 1.5rem 0; }
 .prose img {
     max-width: 100%;
     height: auto;
@@ -104,27 +327,45 @@ body {
     border-radius: 0.5rem;
 }
 .prose blockquote {
-    border-left: 3px solid #FF0000;
+    border-left: 3px solid var(--accent);
     padding-left: 1rem;
     color: #d1d5db;
     font-style: italic;
 }
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+.prose code {
+    font-family: var(--mono);
+    background: rgba(255, 42, 42, 0.1);
+    color: var(--accent);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+.prose pre {
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow-x: auto;
+}
+.prose pre code {
+    background: transparent;
+    color: #e5e7eb;
+    padding: 0;
 }
 
-/* Hollow Button Style */
+/* ============================================================
+   BUTTONS
+   ============================================================ */
 .btn-hollow {
     background-color: transparent;
-    border: 2px solid #FF0000; /* Red border */
-    color: #FF0000; /* Red text */
-    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 .btn-hollow:hover {
-    background-color: #FF0000; /* Red background on hover */
-    color: #000000; /* Black text on hover */
+    background-color: var(--accent);
+    color: #000;
+    box-shadow: 0 0 20px rgba(255, 42, 42, 0.5);
 }
 .btn-hollow:disabled {
     border-color: #555;
@@ -132,11 +373,23 @@ body {
     cursor: not-allowed;
 }
 
-/* Loader */
+/* Focus rings for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* ============================================================
+   LOADER
+   ============================================================ */
 .loader {
     width: 24px;
     height: 24px;
-    border: 3px solid #FF0000; /* Red border */
+    border: 3px solid var(--accent);
     border-bottom-color: transparent;
     border-radius: 50%;
     display: inline-block;
@@ -148,4 +401,14 @@ body {
     100% { transform: rotate(360deg); }
 }
 
+/* ============================================================
+   RESPONSIVE TWEAKS
+   ============================================================ */
+@media (max-width: 640px) {
+    .container { padding-left: 1rem; padding-right: 1rem; }
+    h1 { font-size: 2.5rem !important; }
+    .typing-cursor { height: 1.8rem; }
+}
 
+/* Ensure main content sits above scanline overlay */
+nav, header, main, footer { position: relative; z-index: 2; }

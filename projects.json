@@ -1,38 +1,54 @@
 [
     {
-        "title": "Automated Windows Event Log Analyzer (Chainsaw)",
-        "description": "Developed a Python script to automate `chainsaw.exe`, a powerful tool for rapidly searching and carving Windows Event Logs. This script streamlines threat hunting by identifying suspicious activities and attacker TTPs from massive log files.",
-        "tags": ["Python", "Threat Hunting", "Log Analysis (DFIR)"],
+        "title": "Jinsoku — Self-hosted DFIR Workbench",
+        "description": "Final-year project: full-stack DFIR platform wrapping Hayabusa and Takajo with 11 investigation tabs. Features MITRE ATT&CK matrix, IOC enrichment (VirusTotal / AbuseIPDB / GeoIP), Sysmon process tree, PDF and HTML reporting, and JWT-based RBAC. CI covers 125 pytest tests, mypy, ruff, ESLint, and a Docker build.",
+        "tags": ["FastAPI", "React 18", "TypeScript", "PostgreSQL", "Docker", "DFIR", "MITRE ATT&CK", "v5.0.0"],
+        "status": "Production Ready",
+        "featured": true,
+        "url": "https://github.com/Agentkiller9/Jinsoku"
+    },
+    {
+        "title": "AD-Playground — Vulnerable Active Directory Lab",
+        "description": "Single PowerShell script provisioning a vulnerable AD domain (44 users, OUs, groups) with 31 technique labs across enumeration, credential attacks, ACL abuse, delegation, lateral movement and persistence — plus 7 chained attack scenarios for end-to-end red team training and intern mentoring.",
+        "tags": ["PowerShell", "Active Directory", "Red Team", "Lab", "Mentoring"],
+        "featured": true,
+        "url": "https://github.com/Agentkiller9/AD-Playground"
+    },
+    {
+        "title": "Chainsaw Automator — Threat Hunting CLI",
+        "description": "Python tool automating WithSecure's Chainsaw for bulk Windows Event Log analysis. Performs multi-EventID searches, logon-type mapping and statistical summaries, then writes structured CSV and TXT forensic reports for analyst review.",
+        "tags": ["Python", "Threat Hunting", "DFIR", "Windows Event Logs"],
+        "featured": true,
         "url": "https://github.com/Agentkiller9/Chainsaw-Automator"
     },
     {
         "title": "Rocky Linux OS Hardening & Penetration Testing",
-        "description": "Conducted OS hardening (MFA, firewalld, account policies) on a Rocky Linux 9 VM and validated security by performing comparative penetration tests using Metasploit before and after hardening.",
-        "tags": ["Linux Hardening", "Metasploit", "Firewalld"],
+        "description": "Full OS hardening on Rocky Linux 9 — PAM policies, Firewalld, service disablement, Lynis and Rkhunter — validated via dual-VM comparative testing with Nmap NSE and Metasploit before and after hardening.",
+        "tags": ["Linux Hardening", "Metasploit", "Firewalld", "Lynis", "Rkhunter"],
         "url": "https://github.com/Agentkiller9/Rocky-Linux-Hardening"
     },
     {
-        "title": "Web and Email Server Hardening (Apache & Postfix/Dovecot)",
-        "description": "Configured Apache, Postfix, and Dovecot servers, secured communication with SSL/TLS encryption, and tested them for vulnerabilities using offensive tools and packet analysis.",
-        "tags": ["Apache", "Postfix", "SSL/TLS", "Wireshark"],
+        "title": "Web & Email Server Hardening (Apache, Postfix, Dovecot)",
+        "description": "Configured and hardened Apache, Postfix and Dovecot with SSL/TLS, then validated the deployment using offensive tooling and Wireshark packet analysis.",
+        "tags": ["Apache", "Postfix", "Dovecot", "SSL/TLS", "Wireshark"],
         "url": "https://github.com/Agentkiller9/Web-and-Email-Server-Hardening"
     },
     {
-        "title": "SIEM Lab (Home SOC) Build",
-        "description": "Built a home SOC lab using the Elastic Stack (Elastic SIEM) to centralize logging, monitor endpoints, and detect simulated attacks in real-time. Practiced Blue Team detection engineering.",
+        "title": "SIEM Lab — Home SOC Build",
+        "description": "Home SOC lab built on the Elastic Stack: centralised logging, endpoint monitoring and detection engineering against simulated attacks for blue-team practice.",
         "tags": ["Blue Team", "Elastic SIEM", "Detection Engineering"],
-        "tutorialUrl": "https://www.youtube.com/watch?v=2XLzMb9oZBI"
+        "url": "https://github.com/Agentkiller9/SIEM-Lab-Home-SOC-Build"
     },
     {
-        "title": "Network Traffic Capturing Tool (Python)",
-        "description": "Created a command-line interface (CLI) tool in Python to capture and analyze network packets, demonstrating foundational understanding of network protocols.",
-        "tags": ["Python", "Scapy"],
+        "title": "Packet Sniffer (Python CLI)",
+        "description": "Command-line packet capture and analysis tool built with Scapy — used to reinforce network protocol fundamentals and build a base for later traffic-analysis tooling.",
+        "tags": ["Python", "Scapy", "Networking"],
         "url": "https://github.com/Agentkiller9/PacketSniffer"
     },
     {
-        "title": "Keystroke Tracker (Ethical Keylogger in Python)",
-        "description": "Developed an ethical keylogger in Python to explore malware persistence and data capture techniques, emphasizing defensive programming and security awareness.",
-        "tags": ["Python", "Malware Analysis"],
+        "title": "KeystrokeTracker (Educational Keylogger)",
+        "description": "Python keylogger built for cybersecurity learning and forensic analysis — explores persistence and data-capture techniques with an emphasis on defensive awareness.",
+        "tags": ["Python", "Malware Analysis", "Educational"],
         "url": "https://github.com/Agentkiller9/KeystrokeTracker"
     }
 ]

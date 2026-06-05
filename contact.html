@@ -4,18 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Mugtaba Shaikeldin</title>
+
+    <meta name="description" content="Get in touch with Mugtaba Shaikeldin — Cybersecurity Specialist, Penetration Tester, DFIR Practitioner.">
+    <link rel="canonical" href="https://agentkiller9.github.io/contact.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contact | Mugtaba Shaikeldin">
+    <meta property="og:description" content="Open to discussing security engagements, collaboration, and opportunities.">
+    <meta name="theme-color" content="#050507">
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="text-gray-100 text-base min-h-screen">
 
-    <!-- Navigation Bar -->
-    <nav class="bg-card bg-opacity-80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-700/50">
+    <nav class="bg-card bg-opacity-80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-700/50" aria-label="Primary">
         <div class="container mx-auto px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <a class="text-accent font-bold text-xl" href="index.html">Mugtaba Shaikeldin</a>
+                    <a class="text-accent font-bold text-xl font-mono" href="index.html">~/mugtaba</a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="text-white hover:text-accent transition">Portfolio</a>
@@ -24,13 +34,12 @@
                     <a href="contact.html" class="text-white hover:text-accent transition">Contact</a>
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-white hover:text-accent focus:outline-none">
-                        <i class="fas fa-bars text-xl"></i>
+                    <button id="mobile-menu-button" class="text-white hover:text-accent focus:outline-none" aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden">
             <a href="index.html" class="block py-2 px-8 text-sm text-white hover:bg-gray-700">Portfolio</a>
             <a href="projects.html" class="block py-2 px-8 text-sm text-white hover:bg-gray-700">Projects</a>
@@ -39,24 +48,42 @@
         </div>
     </nav>
 
-    <!-- Contact Header -->
     <header class="header-animated-gradient text-center py-20">
         <div class="container mx-auto px-8">
-            <h1 class="text-5xl font-extrabold text-white">Get In Touch</h1>
-            <p class="text-xl text-accent mt-2">I'm always open to discussing new projects, creative ideas, or opportunities.</p>
+            <p class="terminal-prompt mb-3">ssh contact@mugtaba</p>
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white">Get in touch</h1>
+            <p class="text-lg sm:text-xl text-accent mt-3 font-mono">Open to engagements, collaboration, and conversation.</p>
         </div>
     </header>
 
-    <main class="container mx-auto px-8 py-16">
+    <main class="container mx-auto px-4 sm:px-8 py-16">
+        <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <a href="mailto:mugtaba.shaikeldin@outlook.com" class="card-glow bg-card p-5 rounded-lg text-center">
+                <i class="fas fa-envelope text-2xl text-accent" aria-hidden="true"></i>
+                <p class="text-white font-semibold mt-2">Email</p>
+                <p class="text-gray-400 text-xs mt-1 font-mono break-all">mugtaba.shaikeldin@outlook.com</p>
+            </a>
+            <a href="https://www.linkedin.com/in/mugtaba-shaikeldin/" target="_blank" rel="noopener" class="card-glow bg-card p-5 rounded-lg text-center">
+                <i class="fab fa-linkedin text-2xl text-accent" aria-hidden="true"></i>
+                <p class="text-white font-semibold mt-2">LinkedIn</p>
+                <p class="text-gray-400 text-xs mt-1 font-mono">mugtaba-shaikeldin</p>
+            </a>
+            <a href="https://github.com/Agentkiller9" target="_blank" rel="noopener" class="card-glow bg-card p-5 rounded-lg text-center">
+                <i class="fab fa-github text-2xl text-accent" aria-hidden="true"></i>
+                <p class="text-white font-semibold mt-2">GitHub</p>
+                <p class="text-gray-400 text-xs mt-1 font-mono">@Agentkiller9</p>
+            </a>
+        </div>
+
         <div class="max-w-xl mx-auto">
-            <form action="https://formspree.io/f/mugtaba.shaikeldin@outlook.com" method="POST" class="bg-card p-8 rounded-lg shadow-lg">
+            <form action="https://formspree.io/mugtaba.shaikeldin@outlook.com" method="POST" class="bg-card p-8 rounded-lg shadow-lg">
                 <div class="mb-4">
                     <label for="name" class="block text-white text-sm font-bold mb-2">Name</label>
-                    <input type="text" id="name" name="name" class="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent" required>
+                    <input type="text" id="name" name="name" autocomplete="name" class="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent" required>
                 </div>
                 <div class="mb-4">
                     <label for="email" class="block text-white text-sm font-bold mb-2">Email</label>
-                    <input type="email" id="email" name="email" class="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent" required>
+                    <input type="email" id="email" name="email" autocomplete="email" class="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent" required>
                 </div>
                 <div class="mb-4">
                     <label for="message" class="block text-white text-sm font-bold mb-2">Message</label>
@@ -64,7 +91,7 @@
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn-hollow font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
-                        Send Message <i class="fas fa-paper-plane ml-2"></i>
+                        Send Message <i class="fas fa-paper-plane ml-2" aria-hidden="true"></i>
                     </button>
                 </div>
             </form>
@@ -72,14 +99,13 @@
     </main>
 
     <footer class="text-center py-8 border-t border-gray-800/50">
-        <p class="text-gray-500 text-sm">&copy; 2026 Mugtaba Shaikeldin. All Rights Reserved.</p>
+        <p class="text-gray-500 text-sm">&copy; 2026 Mugtaba Shaikeldin · All Rights Reserved.</p>
     </footer>
 
-    <button id="to-top-button" title="Go To Top"
+    <button id="to-top-button" title="Back to top" aria-label="Back to top"
         class="hidden fixed bottom-8 right-8 w-12 h-12 rounded-full bg-accent text-white justify-center items-center cursor-pointer text-2xl z-50">
-        <i class="fas fa-arrow-up"></i>
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="js/main.js"></script>
