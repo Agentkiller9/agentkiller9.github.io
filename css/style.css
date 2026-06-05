@@ -412,3 +412,240 @@ textarea:focus-visible {
 
 /* Ensure main content sits above scanline overlay */
 nav, header, main, footer { position: relative; z-index: 2; }
+
+/* ============================================================
+   AVAILABILITY STATUS BAR
+   ============================================================ */
+.status-bar {
+    position: relative;
+    z-index: 3;
+    background: linear-gradient(90deg, rgba(34, 197, 94, 0.12), rgba(34, 197, 94, 0.04));
+    border-bottom: 1px solid rgba(34, 197, 94, 0.35);
+    padding: 0.55rem 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+.status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+    animation: status-pulse 2s infinite;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+@keyframes status-pulse {
+    0%   { box-shadow: 0 0 0 0   rgba(34, 197, 94, 0.6); }
+    70%  { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);   }
+    100% { box-shadow: 0 0 0 0   rgba(34, 197, 94, 0);   }
+}
+@media (max-width: 640px) {
+    .status-bar { font-size: 0.75rem; padding: 0.5rem 0.75rem; }
+}
+
+/* ============================================================
+   STATS STRIP
+   ============================================================ */
+.stats-strip {
+    background: rgba(10, 10, 12, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    position: relative;
+    z-index: 2;
+}
+.stat-value {
+    font-family: var(--mono);
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+.stat-plus { font-size: 1.75rem; }
+.stat-label {
+    margin-top: 0.5rem;
+    color: #d1d5db;
+    font-size: 0.95rem;
+    line-height: 1.35;
+}
+.stat-sublabel {
+    display: block;
+    color: #6b7280;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    margin-top: 0.15rem;
+}
+@media (max-width: 640px) {
+    .stat-value { font-size: 2rem; }
+    .stat-label { font-size: 0.85rem; }
+}
+
+/* ============================================================
+   WORKSHOP CARD
+   ============================================================ */
+.workshop-card { border-left: 3px solid var(--accent); }
+
+/* ============================================================
+   PRINT-ONLY HEADER (hidden on screen)
+   ============================================================ */
+.print-only { display: none; }
+
+/* ============================================================
+   PRINT STYLESHEET — clean CV output
+   ============================================================ */
+@media print {
+    @page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+
+    body::before,
+    #tsparticles,
+    nav,
+    .status-bar,
+    footer,
+    #to-top-button,
+    #connect-buttons,
+    #mobile-menu,
+    #blog-preview,
+    .typing-cursor,
+    .reveal { animation: none !important; }
+
+    body {
+        background: #ffffff !important;
+        color: #111 !important;
+        font-size: 11pt;
+        line-height: 1.45;
+    }
+
+    /* Hide screen-only chrome */
+    body::before,
+    #tsparticles,
+    nav,
+    .status-bar,
+    footer,
+    #to-top-button,
+    #mobile-menu,
+    #download-cv,
+    #connect-buttons,
+    .header-animated-gradient,
+    .terminal-prompt,
+    #blog-preview,
+    #projects-preview .btn-hollow,
+    a[href$=".html"][class*="btn-hollow"] { display: none !important; }
+
+    /* Show the print-only CV header */
+    .print-only { display: block !important; }
+    .print-header {
+        text-align: left;
+        border-bottom: 2px solid #050507;
+        padding-bottom: 8pt;
+        margin-bottom: 14pt;
+    }
+    .print-name {
+        font-size: 22pt;
+        font-weight: 800;
+        color: #050507;
+        letter-spacing: -0.5pt;
+    }
+    .print-title {
+        font-size: 11pt;
+        color: #b91c1c;
+        font-weight: 600;
+        margin-top: 2pt;
+    }
+    .print-contact {
+        font-size: 9pt;
+        color: #555;
+        margin-top: 4pt;
+    }
+
+    /* Reveal anything that was opacity-0 by default */
+    .reveal { opacity: 1 !important; transform: none !important; }
+
+    main {
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+    .container { padding: 0 !important; max-width: 100% !important; }
+
+    /* Sections */
+    section { page-break-inside: avoid; margin-bottom: 10pt !important; padding: 0 !important; }
+    section.bg-card { background: transparent !important; border: none !important; box-shadow: none !important; }
+
+    h2 {
+        color: #050507 !important;
+        font-size: 13pt !important;
+        border-bottom: 1px solid #999 !important;
+        padding-bottom: 3pt !important;
+        margin-bottom: 6pt !important;
+    }
+    h2 .font-mono { display: none !important; }
+
+    h3 { color: #050507 !important; font-size: 11pt !important; }
+    p, li { color: #222 !important; }
+    .text-accent, .text-red-400, .text-red-500 { color: #b91c1c !important; }
+    .text-white { color: #050507 !important; }
+    .text-gray-300, .text-gray-400, .text-gray-500 { color: #555 !important; }
+
+    /* Cards flatten */
+    .bg-card, .cert-card, .workshop-card, .project-card {
+        background: transparent !important;
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 6pt 8pt !important;
+        margin-bottom: 4pt !important;
+    }
+
+    .cert-card { border-left: 3px solid #b91c1c !important; }
+    .workshop-card { border-left: 3px solid #b91c1c !important; }
+
+    /* Badges flatten */
+    .skill-badge, .project-tag {
+        color: #b91c1c !important;
+        background: transparent !important;
+        border: 1px solid #b91c1c !important;
+        padding: 1pt 5pt !important;
+        font-size: 8pt !important;
+    }
+    .featured-badge {
+        background: #b91c1c !important;
+        color: #fff !important;
+    }
+    .status-badge, .cert-status {
+        border: 1px solid #999 !important;
+        background: transparent !important;
+        color: #444 !important;
+    }
+
+    /* Timeline */
+    .timeline { padding-left: 8pt !important; }
+    .timeline::before { background: #b91c1c !important; width: 1pt !important; }
+    .timeline-dot {
+        background: #b91c1c !important;
+        box-shadow: none !important;
+        animation: none !important;
+        left: -10pt !important;
+        width: 6pt !important;
+        height: 6pt !important;
+        border: none !important;
+    }
+
+    /* Hide IFRAME (THM badge) and Live Learning sidebar — CV doesn't need it */
+    iframe, #about .md\:col-span-1 { display: none !important; }
+    #about .md\:col-span-2 { width: 100% !important; }
+
+    /* Hero text becomes part of the header */
+    header.header-animated-gradient { display: none !important; }
+
+    /* Page break helpers */
+    #skills, #experience, #certifications { page-break-inside: avoid; }
+
+    /* Links: print URL after for context (only external) */
+    a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; color: #777; }
+    a[href^="mailto:"]::after { content: ""; }
+
+    /* Remove forced opacity on dynamic elements */
+    #subtitle, #hero-p { opacity: 1 !important; }
+}

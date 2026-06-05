@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study — Detecting an active cloud server breach | Mugtaba Shaikeldin</title>
+
+    <meta name="description" content="Sanitised case study — detecting and responding to an active cloud server compromise during the SecOps internship at APU.">
+    <link rel="canonical" href="https://agentkiller9.github.io/case-study-cloud-breach.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Case Study — Detecting an active cloud server breach">
+    <meta property="og:description" content="Detection, triage and containment of a live cloud-server compromise during an internship rotation.">
+    <meta name="theme-color" content="#050507">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:image" content="https://agentkiller9.github.io/og-image.svg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="text-gray-100 text-base min-h-screen">
+
+    <nav class="bg-card bg-opacity-80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-700/50" aria-label="Primary">
+        <div class="container mx-auto px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a class="text-accent font-bold text-xl font-mono" href="index.html">~/mugtaba</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-white hover:text-accent transition">Portfolio</a>
+                    <a href="projects.html" class="text-white hover:text-accent transition">Projects</a>
+                    <a href="blog.html" class="text-white hover:text-accent transition">Blog</a>
+                    <a href="contact.html" class="text-white hover:text-accent transition">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-white hover:text-accent focus:outline-none" aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="index.html" class="block py-2 px-8 text-sm text-white hover:bg-gray-700">Portfolio</a>
+            <a href="projects.html" class="block py-2 px-8 text-sm text-white hover:bg-gray-700">Projects</a>
+            <a href="blog.html" class="block py-2 px-8 text-sm text-white hover:bg-gray-700">Blog</a>
+            <a href="contact.html" class="block py-2 px-8 text-sm text-white hover:bg-gray-700">Contact</a>
+        </div>
+    </nav>
+
+    <header class="header-animated-gradient py-16">
+        <div class="container mx-auto px-4 sm:px-8">
+            <a href="index.html#highlights" class="inline-flex items-center text-accent hover:text-white transition mb-6 font-mono text-sm">
+                <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i> Back to highlights
+            </a>
+            <p class="terminal-prompt mb-3">cat case-studies/cloud-breach.md</p>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-white">Detecting an active cloud server breach</h1>
+            <p class="text-lg text-accent mt-3 font-mono">Threat hunting · Incident response · SecOps Internship · 2025</p>
+            <div class="flex flex-wrap gap-2 mt-5">
+                <span class="project-tag">DFIR</span>
+                <span class="project-tag">Threat Hunting</span>
+                <span class="project-tag">Incident Response</span>
+                <span class="project-tag">Cloud</span>
+                <span class="project-tag">Linux Forensics</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-8 py-16">
+        <div class="max-w-3xl mx-auto space-y-12">
+
+            <!-- TL;DR -->
+            <section class="bg-card p-6 rounded-lg border-l-4 border-accent">
+                <h2 class="text-xl font-bold text-accent mb-3 font-mono"># TL;DR</h2>
+                <p class="text-gray-300">During day-to-day monitoring on the SecOps internship rotation, I identified anomalous activity on a university-managed cloud server that turned out to be an <strong class="text-white">active, in-progress compromise</strong>. I escalated, helped triage and contain the incident, and walked through the forensic timeline with the team afterwards.</p>
+            </section>
+
+            <!-- Context -->
+            <section>
+                <h2 class="text-2xl font-bold text-accent mb-4 font-mono"># Context</h2>
+                <ul class="space-y-2 text-gray-300 list-disc list-inside">
+                    <li><strong class="text-white">Role:</strong> Security Operations Intern, APU SecOps Functional Unit.</li>
+                    <li><strong class="text-white">Asset class:</strong> University-owned Linux cloud server.</li>
+                    <li><strong class="text-white">Detection surface:</strong> Routine review of system, authentication and process telemetry as part of ongoing threat-hunting rotations.</li>
+                </ul>
+                <p class="text-sm text-gray-500 mt-4 italic">Hostnames, IPs, indicators of compromise and exploit details are redacted. This page covers the methodology only.</p>
+            </section>
+
+            <!-- Detection -->
+            <section>
+                <h2 class="text-2xl font-bold text-accent mb-4 font-mono"># Detection</h2>
+                <p class="text-gray-300 mb-3">The initial signal was anomalous activity that didn't match the host's normal behavioural baseline. Specifically:</p>
+                <ul class="space-y-2 text-gray-300 list-disc list-inside">
+                    <li>Unexpected outbound connections from a service account that had no business making them.</li>
+                    <li>Process activity originating from a directory typically used only for short-lived staging.</li>
+                    <li>Authentication-log patterns inconsistent with the documented administrator workflow.</li>
+                </ul>
+                <p class="text-gray-300 mt-3">Cross-referencing those indicators against MITRE ATT&amp;CK techniques and historical baseline made it clear this wasn't a misconfiguration — something was actively present.</p>
+            </section>
+
+            <!-- Triage -->
+            <section>
+                <h2 class="text-2xl font-bold text-accent mb-4 font-mono"># Triage</h2>
+
+                <div class="space-y-5">
+                    <div class="p-5 bg-card rounded-lg">
+                        <h3 class="text-lg font-semibold text-white">1. Confirm, don't tip off</h3>
+                        <p class="text-gray-300 mt-2">Validated the indicators using read-only telemetry before touching the host directly — the goal was confirmation without altering evidence or alerting the attacker.</p>
+                    </div>
+
+                    <div class="p-5 bg-card rounded-lg">
+                        <h3 class="text-lg font-semibold text-white">2. Escalate immediately</h3>
+                        <p class="text-gray-300 mt-2">Once confidence crossed the threshold, escalated to the system administrator and SecOps lead with a written summary of findings, timestamps and the next-step options.</p>
+                    </div>
+
+                    <div class="p-5 bg-card rounded-lg">
+                        <h3 class="text-lg font-semibold text-white">3. Scope the blast radius</h3>
+                        <p class="text-gray-300 mt-2">Helped enumerate the services and accounts the compromised host could reach, the credentials it held, and the trust relationships that might let the attacker pivot.</p>
+                    </div>
+
+                    <div class="p-5 bg-card rounded-lg">
+                        <h3 class="text-lg font-semibold text-white">4. Contain</h3>
+                        <p class="text-gray-300 mt-2">Supported the containment plan — network isolation, credential rotation for in-scope accounts, and snapshotting state for later forensic review.</p>
+                    </div>
+
+                    <div class="p-5 bg-card rounded-lg">
+                        <h3 class="text-lg font-semibold text-white">5. Reconstruct the timeline</h3>
+                        <p class="text-gray-300 mt-2">Used Windows / Linux event-log analysis (the same workflow I later automated in <a href="https://github.com/Agentkiller9/Chainsaw-Automator" target="_blank" rel="noopener" class="text-accent hover:underline">Chainsaw Automator</a>) to walk back the attacker's actions and identify the initial access vector.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Outcome -->
+            <section>
+                <h2 class="text-2xl font-bold text-accent mb-4 font-mono"># Outcome</h2>
+                <ul class="space-y-2 text-gray-300 list-disc list-inside">
+                    <li>The compromise was contained without further lateral movement out of scope.</li>
+                    <li>Root cause and IoCs were documented and fed into the team's detection rules.</li>
+                    <li>The experience directly motivated my final-year project <a href="https://github.com/Agentkiller9/Jinsoku" target="_blank" rel="noopener" class="text-accent hover:underline">Jinsoku</a> — a self-hosted DFIR workbench that wraps Hayabusa and Takajo behind a workflow built around exactly this kind of incident.</li>
+                </ul>
+            </section>
+
+            <!-- Lessons -->
+            <section>
+                <h2 class="text-2xl font-bold text-accent mb-4 font-mono"># Lessons learned</h2>
+                <ul class="space-y-2 text-gray-300 list-disc list-inside">
+                    <li><strong class="text-white">Baselines beat alerts.</strong> The detection didn't come from a tuned SIEM rule — it came from knowing what "normal" looked like for this host.</li>
+                    <li><strong class="text-white">Quiet confirmation first.</strong> If you act before you're sure, you destroy evidence and burn detection. If you wait too long, the attacker moves. The discipline is in the middle.</li>
+                    <li><strong class="text-white">Tooling matters at 3am.</strong> Triaging this manually was slow. Jinsoku exists because the next analyst shouldn't have to re-do every step from a blank terminal.</li>
+                </ul>
+            </section>
+
+            <div class="text-center pt-6">
+                <a href="index.html#highlights" class="btn-hollow font-bold py-3 px-8 rounded-full inline-block">
+                    <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i> Back to portfolio
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center py-8 border-t border-gray-800/50">
+        <p class="text-gray-500 text-sm">&copy; 2026 Mugtaba Shaikeldin · All Rights Reserved.</p>
+    </footer>
+
+    <button id="to-top-button" title="Back to top" aria-label="Back to top"
+        class="hidden fixed bottom-8 right-8 w-12 h-12 rounded-full bg-accent text-white justify-center items-center cursor-pointer text-2xl z-50">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

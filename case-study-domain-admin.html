@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study — Domain Admin on APU's internal AD | Mugtaba Shaikeldin</title>
+
+    <meta name="description" content="Sanitised case study — authorised internal penetration test of APU's Active Directory infrastructure resulting in Domain Admin compromise.">
+    <link rel="canonical" href="https://agentkiller9.github.io/case-study-domain-admin.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Case Study — Domain Admin on APU's internal AD">
+    <meta property="og:description" content="Authorised internal AD penetration test — methodology, kill chain, and remediations.">
+    <meta name="theme-color" content="#050507">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:image" content="https://agentkiller9.github.io/og-image.svg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="text-gray-100 text-base min-h-screen">
+
+    <nav class="bg-card bg-opacity-80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-700/50" aria-label="Primary">
+        <div class="container mx-auto px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a class="text-accent font-bold text-xl font-mono" href="index.html">~/mugtaba</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-white hover:text-accent transition">Portfolio</a>
+                    <a href="projects.html" class="text-white hover:text-accent transition">Projects</a>
+                    <a href="blog.html" class="text-white hover:text-accent transition">Blog</a>
+                    <a href="contact.html" class="text-white hover:text-accent transition">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-white hover:text-accent focus:outline-none" aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="index.html" class="block py-2 px-8 text-sm text-white hover:bg-gray-700">Portfolio</a>
+            <a href="projects.html" class="block py-2 px-8 text-sm text-white hover:bg-gray-700">Projects</a>
+            <a href="blog.html" class="block py-2 px-8 text-sm text-white hover:bg-gray-700">Blog</a>
+            <a href="contact.html" class="block py-2 px-8 text-sm text-white hover:bg-gray-700">Contact</a>
+        </div>
+    </nav>
+
+    <header class="header-animated-gradient py-16">
+        <div class="container mx-auto px-4 sm:px-8">
+            <a href="index.html#highlights" class="inline-flex items-center text-accent hover:text-white transition mb-6 font-mono text-sm">
+                <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i> Back to highlights
+            </a>
+            <p class="terminal-prompt mb-3">cat case-studies/domain-admin.md</p>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-white">Domain Admin on APU's internal AD</h1>
+            <p class="text-lg text-accent mt-3 font-mono">Authorised internal penetration test · SecOps Internship · Jun – Oct 2025</p>
+            <div class="flex flex-wrap gap-2 mt-5">
+                <span class="project-tag">Active Directory</span>
+                <span class="project-tag">Red Team</span>
+                <span class="project-tag">BloodHound</span>
+                <span class="project-tag">Impacket</span>
+                <span class="project-tag">Internal Pentest</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-8 py-16">
+        <div class="max-w-3xl mx-auto space-y-12">
+
+            <!-- TL;DR -->
+            <section class="bg-card p-6 rounded-lg border-l-4 border-accent">
+                <h2 class="text-xl font-bold text-accent mb-3 font-mono"># TL;DR</h2>
+                <p class="text-gray-300">During an authorised internal penetration test of APU's Active Directory environment, I escalated from a low-privileged starting position to <strong class="text-white">Domain Admin</strong> by chaining AD enumeration, credential-based attacks and ACL/delegation abuse. The findings were reported to APU's system administrators and used to harden the environment.</p>
+            </section>
+
+            <!-- Context -->
+            <section>
+                <h2 class="text-2xl font-bold text-accent mb-4 font-mono"># Context</h2>
+                <ul class="space-y-2 text-gray-300 list-disc list-inside">
+                    <li><strong class="text-white">Engagement type:</strong> Internal AD penetration test, fully authorised by APU's SecOps Functional Unit lead.</li>
+                    <li><strong class="text-white">Scope:</strong> University-owned Active Directory infrastructure; in-scope hosts, networks and accounts agreed in writing before testing.</li>
+                    <li><strong class="text-white">Goal:</strong> Identify realistic attack paths from a typical staff or lab-machine foothold up to high-privilege compromise.</li>
+                    <li><strong class="text-white">Reporting line:</strong> Direct to the system administrator; findings were sanitised and remediations tracked.</li>
+                </ul>
+                <p class="text-sm text-gray-500 mt-4 italic">Specific hostnames, account names, exploited misconfigurations and exact TTPs are redacted per engagement policy.</p>
+            </section>
+
+            <!-- Approach -->
+            <section>
+                <h2 class="text-2xl font-bold text-accent mb-4 font-mono"># Approach</h2>
+
+                <div class="space-y-5">
+                    <div class="p-5 bg-card rounded-lg">
+                        <h3 class="text-lg font-semibold text-white">1. Reconnaissance & enumeration</h3>
+                        <p class="text-gray-300 mt-2">From the initial foothold, mapped the domain structure — users, groups, computers, OUs and trust relationships — using standard AD recon tooling. Cross-referenced findings against typical misconfiguration patterns documented in the MITRE ATT&amp;CK framework.</p>
+                    </div>
+
+                    <div class="p-5 bg-card rounded-lg">
+                        <h3 class="text-lg font-semibold text-white">2. Credential discovery</h3>
+                        <p class="text-gray-300 mt-2">Identified credential-exposure opportunities through targeted enumeration of shares, scripts and service configurations. Built a working set of low-privileged accounts to pivot from.</p>
+                    </div>
+
+                    <div class="p-5 bg-card rounded-lg">
+                        <h3 class="text-lg font-semibold text-white">3. Attack-path analysis</h3>
+                        <p class="text-gray-300 mt-2">Used BloodHound to ingest collected AD data and visualise privilege-escalation paths. Prioritised the shortest realistic chain to a high-value target, factoring in detection likelihood.</p>
+                    </div>
+
+                    <div class="p-5 bg-card rounded-lg">
+                        <h3 class="text-lg font-semibold text-white">4. Privilege escalation</h3>
+                        <p class="text-gray-300 mt-2">Exploited a chain of ACL and delegation-related misconfigurations to elevate the working account's effective rights. Each step was validated on a non-production target before being executed in scope.</p>
+                    </div>
+
+                    <div class="p-5 bg-card rounded-lg">
+                        <h3 class="text-lg font-semibold text-white">5. Domain compromise</h3>
+                        <p class="text-gray-300 mt-2">Obtained Domain Admin equivalent control. Performed the minimum actions required to evidence the compromise — no further lateral movement, no data exfiltration, no persistence dropped.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Outcome -->
+            <section>
+                <h2 class="text-2xl font-bold text-accent mb-4 font-mono"># Outcome</h2>
+                <ul class="space-y-2 text-gray-300 list-disc list-inside">
+                    <li>A full attack-path report was delivered to APU's system administrator, including reproducible proof-of-concept steps and screenshots.</li>
+                    <li>Findings fed directly into hardening priorities — including the campus-wide password-policy revamp I later led as Head of the SecOps FU.</li>
+                    <li>Discoveries were used as anonymised teaching material for incoming SecOps interns.</li>
+                </ul>
+            </section>
+
+            <!-- Lessons -->
+            <section>
+                <h2 class="text-2xl font-bold text-accent mb-4 font-mono"># Lessons learned</h2>
+                <ul class="space-y-2 text-gray-300 list-disc list-inside">
+                    <li><strong class="text-white">Misconfiguration beats exploits.</strong> The most impactful steps in the chain weren't 0-days — they were small, accumulated ACL and delegation mistakes that BloodHound makes obvious.</li>
+                    <li><strong class="text-white">Reporting matters as much as access.</strong> A path to DA that the defender can't reproduce is worthless. I now lead with reproducibility from step one.</li>
+                    <li><strong class="text-white">Minimise impact.</strong> Once compromise is proven, stop. Internal engagements don't need to flex; they need to be safe and signed off.</li>
+                </ul>
+            </section>
+
+            <div class="text-center pt-6">
+                <a href="index.html#highlights" class="btn-hollow font-bold py-3 px-8 rounded-full inline-block">
+                    <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i> Back to portfolio
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center py-8 border-t border-gray-800/50">
+        <p class="text-gray-500 text-sm">&copy; 2026 Mugtaba Shaikeldin · All Rights Reserved.</p>
+    </footer>
+
+    <button id="to-top-button" title="Back to top" aria-label="Back to top"
+        class="hidden fixed bottom-8 right-8 w-12 h-12 rounded-full bg-accent text-white justify-center items-center cursor-pointer text-2xl z-50">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

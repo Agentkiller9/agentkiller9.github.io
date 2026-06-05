@@ -6,7 +6,7 @@
     <title>Mugtaba Shaikeldin | Cybersecurity Specialist · Pentester · DFIR Practitioner</title>
 
     <!-- SEO -->
-    <meta name="description" content="Mugtaba Shaikeldin — Cybersecurity Specialist, Penetration Tester and DFIR Practitioner. Head of SecOps at APU, eJPTv2 / ICCA certified, building DFIR tooling (Jinsoku) and red-team labs.">
+    <meta name="description" content="Mugtaba Shaikeldin — final-year cybersecurity student at APU. Penetration tester and DFIR practitioner. eJPTv2 / ICCA certified. Building DFIR tooling (Jinsoku), vulnerable AD labs, and CTF challenges.">
     <meta name="author" content="Mugtaba Shaikeldin">
     <meta name="keywords" content="Mugtaba Shaikeldin, Cybersecurity, Penetration Testing, DFIR, Red Team, Active Directory, eJPTv2, HTB CPTS, APU, Jinsoku, Hayabusa, Chainsaw">
     <link rel="canonical" href="https://agentkiller9.github.io/">
@@ -14,7 +14,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Mugtaba Shaikeldin | Cybersecurity Specialist · Pentester · DFIR Practitioner">
-    <meta property="og:description" content="Head of SecOps at APU, eJPTv2 / ICCA certified, building DFIR tooling (Jinsoku) and red-team labs.">
+    <meta property="og:description" content="Cybersecurity student at APU. Pentester and DFIR practitioner. eJPTv2 / ICCA certified, building DFIR tooling, AD labs and CTF challenges.">
     <meta property="og:url" content="https://agentkiller9.github.io/">
     <meta property="og:site_name" content="Mugtaba Shaikeldin">
 
@@ -23,8 +23,11 @@
     <meta name="twitter:title" content="Mugtaba Shaikeldin | Cybersecurity Portfolio">
     <meta name="twitter:description" content="Penetration Tester · DFIR Practitioner · Head of SecOps at APU.">
 
-    <!-- Theme color -->
+    <!-- Theme color & favicon -->
     <meta name="theme-color" content="#050507">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta property="og:image" content="https://agentkiller9.github.io/og-image.svg">
+    <meta name="twitter:image" content="https://agentkiller9.github.io/og-image.svg">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
@@ -55,6 +58,26 @@
     </script>
 </head>
 <body class="text-gray-100 text-base min-h-screen">
+
+    <!-- Print-only CV header (hidden on screen, visible only when printing) -->
+    <div class="print-only print-header">
+        <div class="print-name">Mugtaba Shaikeldin</div>
+        <div class="print-title">Cybersecurity Specialist · Penetration Tester · DFIR Practitioner</div>
+        <div class="print-contact">
+            mugtaba.shaikeldin@outlook.com &nbsp;·&nbsp;
+            linkedin.com/in/mugtaba-shaikeldin &nbsp;·&nbsp;
+            github.com/Agentkiller9 &nbsp;·&nbsp;
+            Kuala Lumpur, Malaysia
+        </div>
+    </div>
+
+    <!-- Availability banner -->
+    <div class="status-bar" role="status" aria-label="Availability status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span class="text-white"><strong>Available from Aug 2026</strong></span>
+        <span class="text-gray-500 mx-2" aria-hidden="true">·</span>
+        <span class="text-gray-300">Open to graduate roles in <span class="text-accent font-mono">Penetration Testing</span> · <span class="text-accent font-mono">DFIR</span> · <span class="text-accent font-mono">Red Team</span></span>
+    </div>
 
     <!-- Navigation Bar -->
     <nav class="bg-card bg-opacity-80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-700/50" aria-label="Primary">
@@ -98,7 +121,7 @@
                 Cybersecurity Specialist · Penetration Tester · DFIR Practitioner
             </p>
             <p id="hero-p" class="text-gray-400 mt-5 max-w-2xl mx-auto text-base sm:text-lg" style="opacity:0;">
-                Head of Security Operations at APU. Building self-hosted DFIR tooling, leading internal pentests, and mentoring the next intake of security interns.
+                Final-year cybersecurity student at APU. I love breaking into Active Directory, hunting threats through Windows event logs, and turning what I learn into tools, labs and CTF challenges for the next person to break.
             </p>
 
             <div id="connect-buttons" class="mt-10 flex flex-wrap gap-4 justify-center" style="opacity:0;">
@@ -114,9 +137,37 @@
                     <i class="fas fa-paper-plane text-lg" aria-hidden="true"></i>
                     <span>Contact</span>
                 </a>
+                <button type="button" id="download-cv" class="card-glow flex items-center space-x-2 px-6 py-3 bg-accent rounded-full text-black font-semibold hover:opacity-90 transition shadow-lg" aria-label="Download CV as PDF (opens print dialog)">
+                    <i class="fas fa-file-arrow-down text-lg" aria-hidden="true"></i>
+                    <span>Download CV</span>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- Quantified impact strip -->
+    <section class="stats-strip border-b border-gray-800/60" aria-label="Quantified impact">
+        <div class="container mx-auto px-4 sm:px-8 py-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="stat">
+                    <div class="stat-value">31</div>
+                    <div class="stat-label">AD lab scenarios <span class="stat-sublabel">(AD-Playground)</span></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">11</div>
+                    <div class="stat-label">investigation tabs <span class="stat-sublabel">(Jinsoku)</span></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">125</div>
+                    <div class="stat-label">CI tests <span class="stat-sublabel">(Jinsoku · pytest)</span></div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">100<span class="stat-plus">+</span></div>
+                    <div class="stat-label">workstations supported <span class="stat-sublabel">(APU TA)</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <main class="container mx-auto px-4 sm:px-8 py-16 z-10 relative">
 
@@ -295,16 +346,22 @@
         <section id="highlights" class="reveal mb-16" aria-labelledby="highlights-heading">
             <h2 id="highlights-heading" class="text-3xl font-bold text-accent mb-8 border-b border-gray-700 pb-3"><span class="font-mono">$</span> Highlights</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="p-5 bg-card rounded-lg card-glow">
-                    <i class="fa-solid fa-crown text-2xl text-accent mb-2" aria-hidden="true"></i>
+                <a href="case-study-domain-admin.html" class="block p-5 bg-card rounded-lg card-glow group">
+                    <div class="flex items-start justify-between">
+                        <i class="fa-solid fa-crown text-2xl text-accent mb-2" aria-hidden="true"></i>
+                        <span class="text-xs text-accent font-mono opacity-70 group-hover:opacity-100">read case study →</span>
+                    </div>
                     <h3 class="text-lg font-semibold text-white">Domain Admin on APU's internal AD</h3>
                     <p class="text-gray-400 text-sm mt-1">Achieved during a live internal penetration test of the university's Active Directory infrastructure.</p>
-                </div>
-                <div class="p-5 bg-card rounded-lg card-glow">
-                    <i class="fa-solid fa-triangle-exclamation text-2xl text-accent mb-2" aria-hidden="true"></i>
+                </a>
+                <a href="case-study-cloud-breach.html" class="block p-5 bg-card rounded-lg card-glow group">
+                    <div class="flex items-start justify-between">
+                        <i class="fa-solid fa-triangle-exclamation text-2xl text-accent mb-2" aria-hidden="true"></i>
+                        <span class="text-xs text-accent font-mono opacity-70 group-hover:opacity-100">read case study →</span>
+                    </div>
                     <h3 class="text-lg font-semibold text-white">Detected an active cloud server breach</h3>
                     <p class="text-gray-400 text-sm mt-1">Identified and responded to a live compromise during the SecOps internship.</p>
-                </div>
+                </a>
                 <div class="p-5 bg-card rounded-lg card-glow">
                     <i class="fa-solid fa-award text-2xl text-accent mb-2" aria-hidden="true"></i>
                     <h3 class="text-lg font-semibold text-white">Certificate of Appreciation — APU Arabic Club</h3>
@@ -315,6 +372,36 @@
                     <h3 class="text-lg font-semibold text-white">CTF Challenge Creator — CyberNexus</h3>
                     <p class="text-gray-400 text-sm mt-1">Author of boot-to-root challenges deployed at <a href="https://cynx.fun" target="_blank" rel="noopener" class="text-accent hover:underline">cynx.fun</a> events.</p>
                 </div>
+            </div>
+        </section>
+
+        <!-- Workshops & Speaking -->
+        <section id="workshops" class="reveal mb-16" aria-labelledby="workshops-heading">
+            <h2 id="workshops-heading" class="text-3xl font-bold text-accent mb-8 border-b border-gray-700 pb-3"><span class="font-mono">$</span> Workshops & Speaking</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <div class="workshop-card p-6 bg-card rounded-lg card-glow">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <i class="fa-solid fa-chalkboard-user text-2xl text-accent" aria-hidden="true"></i>
+                        <span class="cert-status active">● Hands-on</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white">Linux Privilege Escalation</h3>
+                    <p class="text-sm text-gray-400 font-mono mt-1">APU Arabic Club</p>
+                    <p class="text-gray-300 mt-3">Hands-on workshop walking attendees through enumeration, SUID/SGID abuse, sudo misconfigurations, capabilities, cron-based escalation and kernel exploits on intentionally vulnerable Linux targets.</p>
+                    <p class="text-xs text-accent font-mono mt-3"><i class="fas fa-award mr-1" aria-hidden="true"></i>Awarded a Certificate of Appreciation</p>
+                </div>
+
+                <div class="workshop-card p-6 bg-card rounded-lg card-glow">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <i class="fa-solid fa-chalkboard-user text-2xl text-accent" aria-hidden="true"></i>
+                        <span class="cert-status active">● Internal training</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white">Active Directory &amp; DNS Fundamentals</h3>
+                    <p class="text-sm text-gray-400 font-mono mt-1">APU Technical Assistant Trainees</p>
+                    <p class="text-gray-300 mt-3">Foundational session for the incoming TA intake covering AD architecture (domains, OUs, GPOs), DNS resolution flow, and live troubleshooting of common lab-floor connectivity issues.</p>
+                    <p class="text-xs text-accent font-mono mt-3"><i class="fas fa-users mr-1" aria-hidden="true"></i>Delivered to new TA cohort</p>
+                </div>
+
             </div>
         </section>
 
@@ -440,6 +527,39 @@
                     const expanded = btn.getAttribute('aria-expanded') === 'true';
                     btn.setAttribute('aria-expanded', String(!expanded));
                 });
+            }
+
+            // Download CV — opens print dialog (browser handles Save as PDF)
+            const cvBtn = document.getElementById('download-cv');
+            if (cvBtn) {
+                cvBtn.addEventListener('click', () => window.print());
+            }
+
+            // Animate stats numbers on first reveal
+            const stats = document.querySelectorAll('.stat-value');
+            if (stats.length && !reduceMotion) {
+                const statsObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting || entry.target.dataset.animated) return;
+                        entry.target.dataset.animated = 'true';
+                        const target = entry.target;
+                        const finalText = target.textContent.trim();
+                        const match = finalText.match(/^(\d+)/);
+                        if (!match) return;
+                        const finalNum = parseInt(match[1], 10);
+                        const suffix = finalText.replace(/^\d+/, '');
+                        let current = 0;
+                        const stepTime = 30;
+                        const steps = 24;
+                        const inc = Math.max(1, Math.round(finalNum / steps));
+                        const tick = setInterval(() => {
+                            current = Math.min(finalNum, current + inc);
+                            target.innerHTML = current + (current === finalNum ? suffix : '');
+                            if (current >= finalNum) clearInterval(tick);
+                        }, stepTime);
+                    });
+                }, { threshold: 0.4 });
+                stats.forEach(s => statsObserver.observe(s));
             }
         });
     </script>

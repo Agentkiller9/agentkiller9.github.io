@@ -3,48 +3,32 @@
         "category": "Offensive Security",
         "icon": "fa-solid fa-user-secret",
         "skills": [
-            "Nmap",
-            "Metasploit",
-            "Burp Suite",
-            "SQLMap",
-            "Impacket",
-            "Netexec",
+            "Active Directory Pentesting",
+            "Web Application Pentesting",
             "BloodHound",
-            "Responder",
-            "Rubeus",
-            "Kerbrute",
-            "AD Attack Techniques",
-            "Web App Pentesting"
+            "Burp Suite",
+            "Metasploit"
         ]
     },
     {
         "category": "DFIR & Threat Hunting",
         "icon": "fa-solid fa-magnifying-glass-chart",
         "skills": [
-            "Hayabusa",
-            "Takajo",
-            "Chainsaw",
-            "Windows Event Log Forensics",
+            "Threat Hunting",
+            "Event Log Forensics",
             "MITRE ATT&CK",
-            "IOC Enrichment",
-            "Sysmon",
-            "Nessus",
-            "OpenVAS"
+            "Hayabusa",
+            "Chainsaw"
         ]
     },
     {
         "category": "Infrastructure & Cloud",
         "icon": "fa-solid fa-server",
         "skills": [
-            "Linux (Kali / Rocky / Ubuntu)",
-            "Windows Server & Active Directory",
+            "Linux",
+            "Windows Server & AD",
             "AWS",
-            "Azure",
-            "GCP",
-            "Docker",
-            "Git / GitHub Actions",
-            "Tailscale",
-            "PostgreSQL"
+            "Docker"
         ]
     },
     {
@@ -54,9 +38,7 @@
             "Python",
             "PowerShell",
             "TypeScript / React",
-            "Bash",
-            "FastAPI",
-            "Tailwind CSS"
+            "Bash"
         ]
     }
 ]
