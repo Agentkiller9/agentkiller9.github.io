@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study — Domain Admin on APU's internal AD | Mugtaba Shaikeldin</title>
+    <title>Case Study — Domain Admin on a live production AD | Mugtaba Shaikeldin</title>
 
-    <meta name="description" content="Sanitised case study — authorised internal penetration test of APU's Active Directory infrastructure resulting in Domain Admin compromise.">
+    <meta name="description" content="Sanitised case study — authorised internal penetration test against a live production Active Directory environment resulting in Domain Admin compromise.">
     <link rel="canonical" href="https://agentkiller9.github.io/case-study-domain-admin.html">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Case Study — Domain Admin on APU's internal AD">
-    <meta property="og:description" content="Authorised internal AD penetration test — methodology, kill chain, and remediations.">
+    <meta property="og:title" content="Case Study — Domain Admin on a live production AD">
+    <meta property="og:description" content="Authorised internal AD penetration test against a live production environment — methodology, kill chain, and remediations.">
     <meta name="theme-color" content="#050507">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta property="og:image" content="https://agentkiller9.github.io/og-image.svg">
@@ -56,8 +56,8 @@
                 <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i> Back to highlights
             </a>
             <p class="terminal-prompt mb-3">cat case-studies/domain-admin.md</p>
-            <h1 class="text-3xl sm:text-5xl font-extrabold text-white">Domain Admin on APU's internal AD</h1>
-            <p class="text-lg text-accent mt-3 font-mono">Authorised internal penetration test · SecOps Internship · Jun – Oct 2025</p>
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-white">Domain Admin on a live production AD</h1>
+            <p class="text-lg text-accent mt-3 font-mono">Authorised internal penetration test · Live production environment · 2025</p>
             <div class="flex flex-wrap gap-2 mt-5">
                 <span class="project-tag">Active Directory</span>
                 <span class="project-tag">Red Team</span>
@@ -74,17 +74,17 @@
             <!-- TL;DR -->
             <section class="bg-card p-6 rounded-lg border-l-4 border-accent">
                 <h2 class="text-xl font-bold text-accent mb-3 font-mono"># TL;DR</h2>
-                <p class="text-gray-300">During an authorised internal penetration test of APU's Active Directory environment, I escalated from a low-privileged starting position to <strong class="text-white">Domain Admin</strong> by chaining AD enumeration, credential-based attacks and ACL/delegation abuse. The findings were reported to APU's system administrators and used to harden the environment.</p>
+                <p class="text-gray-300">During an authorised internal penetration test against a live production Active Directory environment, I escalated from a low-privileged starting position to <strong class="text-white">Domain Admin</strong> by chaining AD enumeration, credential-based attacks and ACL/delegation abuse. The findings were reported to the customer's system administrators and used to harden the environment.</p>
             </section>
 
             <!-- Context -->
             <section>
                 <h2 class="text-2xl font-bold text-accent mb-4 font-mono"># Context</h2>
                 <ul class="space-y-2 text-gray-300 list-disc list-inside">
-                    <li><strong class="text-white">Engagement type:</strong> Internal AD penetration test, fully authorised by APU's SecOps Functional Unit lead.</li>
-                    <li><strong class="text-white">Scope:</strong> University-owned Active Directory infrastructure; in-scope hosts, networks and accounts agreed in writing before testing.</li>
-                    <li><strong class="text-white">Goal:</strong> Identify realistic attack paths from a typical staff or lab-machine foothold up to high-privilege compromise.</li>
-                    <li><strong class="text-white">Reporting line:</strong> Direct to the system administrator; findings were sanitised and remediations tracked.</li>
+                    <li><strong class="text-white">Engagement type:</strong> Authorised internal AD penetration test against a live production environment.</li>
+                    <li><strong class="text-white">Scope:</strong> A production Active Directory deployment; in-scope hosts, networks and accounts agreed in writing before testing.</li>
+                    <li><strong class="text-white">Goal:</strong> Identify realistic attack paths from a typical low-privileged user foothold up to high-privilege compromise.</li>
+                    <li><strong class="text-white">Reporting line:</strong> Direct to the customer's system administrator; findings were sanitised and remediations tracked.</li>
                 </ul>
                 <p class="text-sm text-gray-500 mt-4 italic">Specific hostnames, account names, exploited misconfigurations and exact TTPs are redacted per engagement policy.</p>
             </section>
@@ -125,9 +125,9 @@
             <section>
                 <h2 class="text-2xl font-bold text-accent mb-4 font-mono"># Outcome</h2>
                 <ul class="space-y-2 text-gray-300 list-disc list-inside">
-                    <li>A full attack-path report was delivered to APU's system administrator, including reproducible proof-of-concept steps and screenshots.</li>
-                    <li>Findings fed directly into hardening priorities — including the campus-wide password-policy revamp I later led as Head of the SecOps FU.</li>
-                    <li>Discoveries were used as anonymised teaching material for incoming SecOps interns.</li>
+                    <li>A full attack-path report was delivered to the customer's system administrator, including reproducible proof-of-concept steps and screenshots.</li>
+                    <li>Findings fed directly into the customer's hardening priorities — including a password-policy revamp driven off the report's recommendations.</li>
+                    <li>Discoveries were used as anonymised teaching material for the customer's incoming security team.</li>
                 </ul>
             </section>
 
